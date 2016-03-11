@@ -1,0 +1,6 @@
+framework module Unirest {
+  umbrella header "Unirest-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,11 @@
+use_frameworks!
+
+pod 'ChameleonFramework'
+pod 'Parse', '~> 1.9'
+pod 'ParseUI', '~> 1.1'
+pod 'AFNetworking', '~> 2.6'
+pod 'SDWebImage', '~> 3.7'
+pod 'IQKeyboardManager', '~> 3.3'
+pod 'FlatUIKit'
+pod 'Unirest', '~> 1.1.4'
+
