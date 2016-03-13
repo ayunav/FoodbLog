@@ -10,11 +10,10 @@
 
 @interface FoodFeedDetailViewController : UIViewController
 
-@property (nonatomic) NSString *textViewCaption;
+// from top to bottom as on the screen
 @property (nonatomic) NSString *imageUrlString;
 @property (nonatomic) NSString *userName;
 @property (nonatomic) NSString *recipeName;
-
-
+@property (nonatomic) NSString *textViewCaption;
 
 @end

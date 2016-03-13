@@ -7,18 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "FoodFeedObject.h"
 
 @protocol RecipeTableViewDelegate <NSObject>
 
-- (void) didSelectRecipe:(NSString *)recipe withIngredients:(NSString*)ingredients;
-
+- (void) didSelectRecipe:(NSString *)recipe withIngredients:(NSString *)ingredients;
 
 @end
 
+
 @interface RecipeTableViewController : UITableViewController
 
-@property (nonatomic) NSArray<FoodFeedObject*> *recipeResultsArray;
 @property (nonatomic) id<RecipeTableViewDelegate> delegate;
+@property (nonatomic) NSArray<FoodFeedObject *> *recipeResultsArray;
 
 @end

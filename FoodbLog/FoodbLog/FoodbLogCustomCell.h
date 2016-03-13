@@ -11,8 +11,6 @@
 
 @interface FoodbLogCustomCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet PFImageView *foodbLogImageInTheFoodbLogCell;
-
-@property (weak, nonatomic) IBOutlet UILabel *foodbLogNameLabel;
+@property (weak, nonatomic) IBOutlet PFImageView *foodbLogImage;
 
 @end

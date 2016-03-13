@@ -10,12 +10,12 @@
 
 @interface FoodFeedObject : NSObject
 
-@property (nonatomic) NSString* caption;
-@property (nonatomic) NSString* imageURLString;
-@property (nonatomic) NSString* recipeID;
-@property (nonatomic) NSString* recipeTitle;
-@property (nonatomic) NSString* instagramUserName;
-@property (nonatomic) NSString* searchTerm;
+@property (nonatomic) NSString *caption;
+@property (nonatomic) NSString *imageURLString;
+@property (nonatomic) NSString *recipeID;
+@property (nonatomic) NSString *recipeTitle;
+@property (nonatomic) NSString *instagramUserName;
+@property (nonatomic) NSString *searchTerm;
 
 
 

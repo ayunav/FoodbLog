@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface FoodFeedCustomCVC : UICollectionViewCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *foodImage;
 @property (weak, nonatomic) IBOutlet UILabel *foodNameLabel;
 

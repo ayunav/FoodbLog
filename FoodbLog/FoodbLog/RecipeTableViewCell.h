@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RecipeTableViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *recipeImage;
 @property (weak, nonatomic) IBOutlet UILabel *recipeName;
 

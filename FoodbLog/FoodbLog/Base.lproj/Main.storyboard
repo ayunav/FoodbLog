@@ -63,9 +63,6 @@
                                         <exclude reference="PSX-Dw-CmG"/>
                                     </mask>
                                 </variation>
-                                <connections>
-                                    <action selector="recipeButtonTapped:" destination="Jsb-ww-IDP" eventType="touchUpInside" id="Oop-Jx-cCg"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -109,10 +106,10 @@
             </objects>
             <point key="canvasLocation" x="1502" y="-1511"/>
         </scene>
-        <!--Food Logs CustomCollectionVC-->
+        <!--Food Logs Collection VC-->
         <scene sceneID="Won-OC-9GV">
             <objects>
-                <collectionViewController id="Ej6-zJ-2Ib" userLabel="Food Logs CustomCollectionVC" customClass="FoodbLogCollectionVC" sceneMemberID="viewController">
+                <collectionViewController id="Ej6-zJ-2Ib" userLabel="Food Logs Collection VC" customClass="FoodbLogCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="pCR-CD-WKv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -124,14 +121,14 @@
                             <inset key="sectionInset" minX="2" minY="2" maxX="2" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="foodbLogCell" id="I7U-Qz-06Z" customClass="FoodbLogCustomCell">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FoodbLogCustomCell" id="I7U-Qz-06Z" userLabel="foodbLogCustomCell" customClass="FoodbLogCustomCell">
                                 <rect key="frame" x="2" y="66" width="175" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FullSizeRender" translatesAutoresizingMaskIntoConstraints="NO" id="LL9-TZ-IJK" customClass="PFImageView">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LL9-TZ-IJK" customClass="PFImageView">
                                             <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="175" id="aA0-TV-csT"/>
@@ -193,7 +190,7 @@
                                     <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="testCell" id="C0x-uH-KmF" customClass="FoodFeedCustomCVC">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FoodFeedCustomCVC" id="C0x-uH-KmF" customClass="FoodFeedCustomCVC">
                                         <rect key="frame" x="20" y="61" width="280" height="380"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -213,7 +210,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="75"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagram Caption/Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsN-z7-4d2">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsN-z7-4d2">
                                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="75"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -385,10 +382,10 @@
             </objects>
             <point key="canvasLocation" x="1502" y="54"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller for CreateLog VC-->
         <scene sceneID="sEK-bM-G9v">
             <objects>
-                <navigationController id="JIG-jI-mLI" sceneMemberID="viewController">
+                <navigationController id="JIG-jI-mLI" userLabel="Navigation Controller for CreateLog VC" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Riy-Yd-A5t">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -401,10 +398,10 @@
             </objects>
             <point key="canvasLocation" x="1502" y="-637"/>
         </scene>
-        <!--CreateALog-->
+        <!--CreateLog VC-->
         <scene sceneID="i5p-o3-1zc">
             <objects>
-                <viewController id="WBo-t4-PnB" userLabel="CreateALog" customClass="CreateLogViewController" sceneMemberID="viewController">
+                <viewController id="WBo-t4-PnB" userLabel="CreateLog VC" customClass="CreateLogViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="r4P-YI-o1Z"/>
                         <viewControllerLayoutGuide type="bottom" id="Yfc-yA-9O0"/>
@@ -554,10 +551,10 @@
             </objects>
             <point key="canvasLocation" x="2209" y="-637"/>
         </scene>
-        <!--Food Image Picker-->
+        <!--Instagram Image Picker-->
         <scene sceneID="SHr-0n-67f">
             <objects>
-                <collectionViewController storyboardIdentifier="InstagramImagePicker" id="qVk-gc-INx" userLabel="Food Image Picker" customClass="InstagramImagePicker" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="InstagramImagePickerViewController" id="qVk-gc-INx" userLabel="Instagram Image Picker" customClass="InstagramImagePickerViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="pda-ev-Man">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -569,7 +566,7 @@
                             <inset key="sectionInset" minX="2" minY="5" maxX="2" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="foodImagePickerCell" id="zvM-FM-51J" customClass="FoodImagePickerCustomCVC">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InstagramImagePickerCustomCell" id="zvM-FM-51J" customClass="InstagramImagePickerCustomCell">
                                 <rect key="frame" x="2" y="5" width="175" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -608,10 +605,10 @@
             </objects>
             <point key="canvasLocation" x="3181" y="-843"/>
         </scene>
-        <!--Recipe Table View Controller-->
+        <!--Recipe Picker Table View Controller-->
         <scene sceneID="CdB-r5-ymd">
             <objects>
-                <tableViewController storyboardIdentifier="RecipeTableViewController" id="o24-jZ-SBu" customClass="RecipeTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RecipeTableViewController" id="o24-jZ-SBu" userLabel="Recipe Picker Table View Controller" customClass="RecipeTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="133" sectionHeaderHeight="28" sectionFooterHeight="28" id="tKa-PS-TNJ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -672,10 +669,10 @@
             </objects>
             <point key="canvasLocation" x="3884" y="-843"/>
         </scene>
-        <!--Restaurants-->
+        <!--Restaurant Picker Table View Controller-->
         <scene sceneID="fkR-2M-0yN">
             <objects>
-                <tableViewController storyboardIdentifier="RestaurantPicker" id="V1r-Rg-8Tt" userLabel="Restaurants" customClass="RestaurantPickerTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RestaurantPickerTableViewController" id="V1r-Rg-8Tt" customClass="RestaurantPickerTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yz4-fk-c4N">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -735,10 +732,10 @@
             </objects>
             <point key="canvasLocation" x="-701" y="-276"/>
         </scene>
-        <!--Food Blog NavController-->
+        <!--NavController for Food Blog ColVC-->
         <scene sceneID="W2f-5x-Url">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gS1-7B-Vab" userLabel="Food Blog NavController" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gS1-7B-Vab" userLabel="NavController for Food Blog ColVC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Food bLOG" image="Literature Filled-25" id="0cq-Iv-nhg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Prc-zH-yCb">
@@ -754,10 +751,10 @@
             </objects>
             <point key="canvasLocation" x="119" y="-637"/>
         </scene>
-        <!--Food Feed-->
+        <!--NavController for Food Feed VC-->
         <scene sceneID="G51-hF-yYN">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Fv-Ue-ehK" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Fv-Ue-ehK" userLabel="NavController for Food Feed VC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Food Feed" image="Food Filled-25" id="NgG-CQ-VXD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hAN-nb-hhQ">
@@ -777,7 +774,6 @@
     <resources>
         <image name="Food Filled-25" width="25" height="25"/>
         <image name="Fork-32" width="32" height="32"/>
-        <image name="FullSizeRender" width="640" height="627"/>
         <image name="Instagram" width="32" height="32"/>
         <image name="Literature Filled-25" width="25" height="25"/>
         <image name="cameraIcon" width="32" height="32"/>

@@ -12,12 +12,11 @@
 
 @end
 
+
 @implementation RestaurantPickerTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
 }
 
 #pragma mark - Table view data source
@@ -30,7 +29,6 @@
     return self.restaurantData.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RestaurantNameCell" forIndexPath:indexPath];
@@ -38,15 +36,13 @@
     cell.textLabel.text = self.restaurantData[indexPath.row][@"restaurantName"];
     cell.detailTextLabel.text = self.restaurantData[indexPath.row][@"restaurantAddress"];
     
-    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-     
     NSString *restaurant = self.restaurantData[indexPath.row][@"restaurantName"];
-    [self.delegate didSelectRestaurant:restaurant]; 
+    [self.delegate didSelectRestaurant:restaurant];
     
 }
 

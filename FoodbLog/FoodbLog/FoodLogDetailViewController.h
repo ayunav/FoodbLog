@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import "FoodLog.h"
+#import "FoodbLogObject.h"
 
 @interface FoodLogDetailViewController : UIViewController
 
-@property (nonatomic) FoodLog *foodLogObject;
+@property (nonatomic) FoodLog *foodbLogObject;
 
 @end
