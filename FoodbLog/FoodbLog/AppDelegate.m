@@ -10,7 +10,7 @@
 #import <ChameleonFramework/Chameleon.h>
 
 #import "AppDelegate.h"
-#import "FoodLog.h"
+#import "FoodbLogObject.h"
 
 NSString * const parseApplicationId = @"YOUR_PARSE_APP_ID";
 NSString * const parseClientKey = @"YOUR_PARSE_CLIENT_KEY";
