@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fDy-ci-PHG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fDy-ci-PHG">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -145,7 +145,7 @@
                                     <constraint firstAttribute="trailing" secondItem="LL9-TZ-IJK" secondAttribute="trailing" id="eb4-ly-XgX"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="foodbLogImageInTheFoodbLogCell" destination="LL9-TZ-IJK" id="Qvq-Uc-3Bb"/>
+                                    <outlet property="foodbLogImage" destination="LL9-TZ-IJK" id="nOm-wn-h5Q"/>
                                     <segue destination="Jsb-ww-IDP" kind="show" identifier="FoodLogDetailVCSegueIdentifier" id="951-2R-381"/>
                                 </connections>
                             </collectionViewCell>

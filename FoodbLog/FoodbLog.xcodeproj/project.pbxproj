@@ -22,7 +22,7 @@
 		50967FC71BD5C8F40029D6AB /* SignPainter-HouseScript.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50967FC61BD5C8F40029D6AB /* SignPainter-HouseScript.ttf */; };
 		50967FD11BD5E36F0029D6AB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50967FD01BD5E36F0029D6AB /* Launch Screen.storyboard */; };
 		50967FD41BD6F6930029D6AB /* RecipeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50967FD31BD6F6930029D6AB /* RecipeTableViewController.m */; };
-		50A3C2C41BCAE4AD0077F79B /* InstagramImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A3C2C31BCAE4AD0077F79B /* InstagramImagePickerViewController.m */; };
+		50A3C2C41BCAE4AD0077F79B /* InstagramImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A3C2C31BCAE4AD0077F79B /* InstagramImagePicker.m */; };
 		50D767B21BCC785000C82B8B /* FoodbLogCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D767B11BCC785000C82B8B /* FoodbLogCollectionViewController.m */; };
 		50D767B81BCC895900C82B8B /* FoodFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D767B71BCC895900C82B8B /* FoodFeedViewController.m */; };
 		50EC0D181BD0545C0045B513 /* RestaurantPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EC0D171BD0545C0045B513 /* RestaurantPickerTableViewController.m */; };
@@ -82,8 +82,8 @@
 		50967FD01BD5E36F0029D6AB /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		50967FD21BD6F6930029D6AB /* RecipeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeTableViewController.h; sourceTree = "<group>"; };
 		50967FD31BD6F6930029D6AB /* RecipeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeTableViewController.m; sourceTree = "<group>"; };
-		50A3C2C21BCAE4AD0077F79B /* InstagramImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramImagePickerViewController.h; sourceTree = "<group>"; };
-		50A3C2C31BCAE4AD0077F79B /* InstagramImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramImagePickerViewController.m; sourceTree = "<group>"; };
+		50A3C2C21BCAE4AD0077F79B /* InstagramImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramImagePicker.h; sourceTree = "<group>"; };
+		50A3C2C31BCAE4AD0077F79B /* InstagramImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramImagePicker.m; sourceTree = "<group>"; };
 		50D767B01BCC785000C82B8B /* FoodbLogCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodbLogCollectionViewController.h; sourceTree = "<group>"; };
 		50D767B11BCC785000C82B8B /* FoodbLogCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodbLogCollectionViewController.m; sourceTree = "<group>"; };
 		50D767B61BCC895900C82B8B /* FoodFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodFeedViewController.h; sourceTree = "<group>"; };
@@ -235,8 +235,8 @@
 		294C32C51C95DD6700795520 /* Pick Image From Instagram */ = {
 			isa = PBXGroup;
 			children = (
-				50A3C2C21BCAE4AD0077F79B /* InstagramImagePickerViewController.h */,
-				50A3C2C31BCAE4AD0077F79B /* InstagramImagePickerViewController.m */,
+				50A3C2C21BCAE4AD0077F79B /* InstagramImagePicker.h */,
+				50A3C2C31BCAE4AD0077F79B /* InstagramImagePicker.m */,
 			);
 			name = "Pick Image From Instagram";
 			sourceTree = "<group>";
@@ -522,7 +522,7 @@
 				50F7C6781BCAF72B00A969D1 /* InstagramImagePickerCustomCell.m in Sources */,
 				50D767B21BCC785000C82B8B /* FoodbLogCollectionViewController.m in Sources */,
 				50EC0D181BD0545C0045B513 /* RestaurantPickerTableViewController.m in Sources */,
-				50A3C2C41BCAE4AD0077F79B /* InstagramImagePickerViewController.m in Sources */,
+				50A3C2C41BCAE4AD0077F79B /* InstagramImagePicker.m in Sources */,
 				5D2957241BD3F8FE0029FD65 /* FoodFeedObject.m in Sources */,
 				50967FD41BD6F6930029D6AB /* RecipeTableViewController.m in Sources */,
 				29F703A31BD08C5C009B7A82 /* FoodbLogObject.m in Sources */,

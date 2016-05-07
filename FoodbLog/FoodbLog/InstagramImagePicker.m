@@ -1,5 +1,5 @@
 //
-//  InstagramImagePickerViewController.m
+//  InstagramImagePicker.m
 //  FoodbLog
 //
 //  Created by Jovanny Espinal on 10/11/15.
@@ -9,7 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
-#import "InstagramImagePickerViewController.h"
+#import "InstagramImagePicker.h"
 #import "InstagramImagePickerCustomCell.h"
 
 @implementation InstagramImagePicker
@@ -32,7 +32,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self.imageURLArray count];
+    return self.imageURLArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

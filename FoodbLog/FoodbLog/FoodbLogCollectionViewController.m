@@ -12,7 +12,6 @@
 
 #import "FoodbLogObject.h"
 #import "FoodbLogCollectionViewController.h"
-#import "FoodbLogCustomHeader.h"
 #import "FoodbLogCustomCell.h"
 #import "FoodLogDetailViewController.h"
 

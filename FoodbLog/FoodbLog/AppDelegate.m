@@ -12,8 +12,8 @@
 #import "AppDelegate.h"
 #import "FoodbLogObject.h"
 
-NSString * const parseApplicationId = @"YOUR_PARSE_APP_ID";
-NSString * const parseClientKey = @"YOUR_PARSE_CLIENT_KEY";
+NSString * const parseApplicationId = @"rjpud8TLiUXDlfbMapE2epIj6lwTPafkhWQInPs3"; //@"YOUR_PARSE_APP_ID";
+NSString * const parseClientKey = @"je9HpthLghFr4MRHSvWTLlBBxJVb3udoZ8XmTisz"; //@"YOUR_PARSE_CLIENT_KEY";
 
 @interface AppDelegate ()
 

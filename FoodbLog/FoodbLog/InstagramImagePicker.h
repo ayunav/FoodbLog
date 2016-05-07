@@ -1,5 +1,5 @@
 //
-//  InstagramImagePickerViewController.h
+//  InstagramImagePicker.h
 //  FoodbLog
 //
 //  Created by Jovanny Espinal on 10/11/15.

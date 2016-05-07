@@ -14,11 +14,11 @@
 #import <UIKit/UIKit.h>
 #import <ChameleonFramework/Chameleon.h>
 
-#import "CreateLogViewController.h"
-#import "InstagramImagePickerViewController.h"
 #import "FoodbLogObject.h"
-#import "RestaurantPickerTableViewController.h"
 #import "FoodFeedObject.h"
+#import "CreateLogViewController.h"
+#import "InstagramImagePicker.h"
+#import "RestaurantPickerTableViewController.h"
 #import "RecipeTableViewController.h"
 
 @interface CreateLogViewController ()
@@ -300,25 +300,23 @@ RecipeTableViewDelegate
     NSString *urlString = [NSString stringWithFormat:@"https://api.instagram.com/v1/tags/%@/media/recent?client_id=ac0ee52ebb154199bfabfb15b498c067", foodName];
     
     
-    AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc]init];
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc]init];
     [manager GET:urlString
       parameters:nil
-         success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+         success:^(AFHTTPRequestOperation *_Nonnull operation, id  _Nonnull responseObject) {
              
              NSArray *results = responseObject[@"data"];
              
              
-             NSMutableArray* searchResults = [[NSMutableArray alloc] init];
+             NSMutableArray *searchResults = [[NSMutableArray alloc] init];
              
              // loop through all json posts
              for (NSDictionary *result in results) {
-                 ;
                  [searchResults addObject:result[@"images"][@"standard_resolution"][@"url"]];
-                 
              }
              
              //pass the searchResults over to the CollectionViewController
-             InstagramImagePickerViewController* instagramPicker = [self.storyboard instantiateViewControllerWithIdentifier:@"InstagramImagePickerViewController"];
+             InstagramImagePicker *instagramPicker = [self.storyboard instantiateViewControllerWithIdentifier:@"InstagramImagePickerViewController"];
              
              instagramPicker.delegate = self;
              instagramPicker.imageURLArray = searchResults;
