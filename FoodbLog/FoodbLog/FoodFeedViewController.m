@@ -169,7 +169,7 @@
     
     string = [string stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     
-    NSString *URLString = [NSString stringWithFormat:@"http://food2fork.com/api/search?key=54f7d87124b73e5b6ea3a30f7ec3eb54&q=%@", string];
+    NSString *URLString = [NSString stringWithFormat:@"https://forkify-api.herokuapp.com/api/search?q=%@", string];
     
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc]init];
   
