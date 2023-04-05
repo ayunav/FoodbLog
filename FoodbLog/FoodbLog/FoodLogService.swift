@@ -9,7 +9,11 @@
 import Foundation
 
 final class FoodLogService {
-    let session = URLSession.shared
+    let session : URLSessionContract
+    
+    init(_ session : URLSessionContract = URLSession.shared) {
+        self.session = session
+    }
     
     private var decoder : JSONDecoder = {
         let decoder = JSONDecoder()
@@ -18,7 +22,6 @@ final class FoodLogService {
     }()
     
     func requestAPI<Element : Decodable>(for url : URLRequest, _ type : Element.Type, _ completion : @escaping ((Result<Element,Error>)->Void)) {
-        
         session.dataTask(with: url) { data, response, error in
             
             if let error = error {
