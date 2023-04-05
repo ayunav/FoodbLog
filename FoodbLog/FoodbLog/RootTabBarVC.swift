@@ -12,6 +12,7 @@ final class RootTabBarVC: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigationBarApperance()
         setupVCs()
     }
     
@@ -24,6 +25,18 @@ final class RootTabBarVC: UITabBarController {
 }
 
 private extension RootTabBarVC {
+    
+    func configureNavigationBarApperance() {
+        // White non-transucent navigation bar, supports dark appearance
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            appearance.backgroundColor = .systemOrange
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        }
+    }
     func firstTabBar() -> UIViewController {
         let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "\(FoodLogCollectionViewVC.self)") as! FoodLogCollectionViewVC
         
@@ -52,6 +65,7 @@ private extension RootTabBarVC {
         title : String,
         image : UIImage?, preferLargeTitles : Bool = false) -> UIViewController {
             let navController = UINavigationController(rootViewController: rootViewController)
+            
             navController.tabBarItem.title = title
             navController.tabBarItem.image = image
             if #available(iOS 11.0, *) {
