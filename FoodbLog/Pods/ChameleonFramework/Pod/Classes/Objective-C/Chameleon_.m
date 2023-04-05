@@ -254,7 +254,7 @@
     }
     
     [[UIButton appearance] setTintColor:contentColor];
-//    [[UIButton appearance] setBackgroundColor:primaryColor];
+    [[UIButton appearance] setBackgroundColor:primaryColor];
     
     
     [[UIButton appearanceWhenContainedIn:[UISearchBar class], nil] setTintColor:contentColor];
@@ -747,7 +747,7 @@
     }
     
     [[UIToolbar appearance] setTintColor:contentColor];
-    [[UIToolbar appearance] setBarTintColor:[UIColor groupTableViewBackgroundColor]];
+    [[UIToolbar appearance] setBarTintColor:primaryColor];
     [[UIToolbar appearance] setClipsToBounds:YES];
 }
 

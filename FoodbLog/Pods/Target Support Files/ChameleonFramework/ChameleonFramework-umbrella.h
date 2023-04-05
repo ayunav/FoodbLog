@@ -1,10 +1,20 @@
+#ifdef __OBJC__
 #import <UIKit/UIKit.h>
+#else
+#ifndef FOUNDATION_EXPORT
+#if defined(__cplusplus)
+#define FOUNDATION_EXPORT extern "C"
+#else
+#define FOUNDATION_EXPORT extern
+#endif
+#endif
+#endif
 
 #import "Chameleon.h"
-#import "Chameleon_.h"
 #import "ChameleonConstants.h"
 #import "ChameleonEnums.h"
 #import "ChameleonMacros.h"
+#import "Chameleon_.h"
 #import "NSArray+Chameleon.h"
 #import "UIButton+Chameleon.h"
 #import "UIColor+Chameleon.h"
@@ -15,10 +25,10 @@
 #import "UIView+ChameleonPrivate.h"
 #import "UIViewController+Chameleon.h"
 #import "Chameleon.h"
-#import "Chameleon_.h"
 #import "ChameleonConstants.h"
 #import "ChameleonEnums.h"
 #import "ChameleonMacros.h"
+#import "Chameleon_.h"
 #import "NSArray+Chameleon.h"
 #import "UIButton+Chameleon.h"
 #import "UIColor+Chameleon.h"

@@ -46,15 +46,29 @@ DEPENDENCIES:
   - SDWebImage (~> 3.7)
   - Unirest (~> 1.1.4)
 
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - Bolts
+    - ChameleonFramework
+    - FlatUIKit
+    - IQKeyboardManager
+    - Parse
+    - ParseUI
+    - SDWebImage
+    - Unirest
+
 SPEC CHECKSUMS:
-  AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
+  AFNetworking: cd116683fd5dd1a34715a3c9410b6d7b8745d8b9
   Bolts: 805a4a87413e49d4a0c2b7d469084cbc46b09342
   ChameleonFramework: 5abe69b1f2a6cc79c3c435fcd9d3d855748225ee
   FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
   IQKeyboardManager: d863eb0bca424d1f6dad6bdd1f856af52664add8
   Parse: 712efbc476d4f47b0f96b70db7e53101575753aa
-  ParseUI: 8a22e448c03f825203d8c379c80523517f68baa3
+  ParseUI: a5e6d48f2e4fcc61f78c4f31a3252c0e7c0b2d79
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   Unirest: 5e4d93eaf32463bf619a4ecd3bbc8c32acf21eac
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 03d171a15bf65394dfd97b11c36be192765b3f6e
+
+COCOAPODS: 1.11.3
