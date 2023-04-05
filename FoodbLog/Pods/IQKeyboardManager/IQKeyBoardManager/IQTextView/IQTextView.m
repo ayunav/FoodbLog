@@ -1,7 +1,7 @@
 //
-//  IQTextView.m
+// IQTextView.m
 // https://github.com/hackiftekhar/IQKeyboardManager
-// Copyright (c) 2013-15 Iftekhar Qurashi.
+// Copyright (c) 2013-16 Iftekhar Qurashi.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,15 +25,6 @@
 
 #import <UIKit/UILabel.h>
 #import <UIKit/UINibLoading.h>
-
-#if !(__has_feature(objc_instancetype))
-    #define instancetype id
-#endif
-
-//Xcode 4.5 compatibility check
-#ifndef NSFoundationVersionNumber_iOS_5_1
-    #define NSLineBreakByWordWrapping UILineBreakModeWordWrap
-#endif
 
 @interface IQTextView ()
 
@@ -103,12 +94,21 @@
     [self layoutIfNeeded];
 }
 
+-(void)setTextAlignment:(NSTextAlignment)textAlignment
+{
+    [super setTextAlignment:textAlignment];
+    placeHolderLabel.textAlignment = textAlignment;
+    
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+}
+
 -(void)layoutSubviews
 {
     [super layoutSubviews];
 
     [placeHolderLabel sizeToFit];
-    placeHolderLabel.frame = CGRectMake(8, 8, CGRectGetWidth(self.frame)-16, CGRectGetHeight(placeHolderLabel.frame));
+    placeHolderLabel.frame = CGRectMake(4, 8, CGRectGetWidth(self.frame)-16, CGRectGetHeight(placeHolderLabel.frame));
 }
 
 -(void)setPlaceholder:(NSString *)placeholder
@@ -122,6 +122,7 @@
         placeHolderLabel.lineBreakMode = NSLineBreakByWordWrapping;
         placeHolderLabel.numberOfLines = 0;
         placeHolderLabel.font = self.font;
+        placeHolderLabel.textAlignment = self.textAlignment;
         placeHolderLabel.backgroundColor = [UIColor clearColor];
         placeHolderLabel.textColor = [UIColor colorWithWhite:0.7 alpha:1.0];
         placeHolderLabel.alpha = 0;

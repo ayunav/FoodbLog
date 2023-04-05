@@ -1,7 +1,7 @@
 //
 // IQKeyboardManager.h
 // https://github.com/hackiftekhar/IQKeyboardManager
-// Copyright (c) 2013-15 Iftekhar Qurashi.
+// Copyright (c) 2013-16 Iftekhar Qurashi.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -31,10 +31,6 @@
 #import <UIKit/UITextInputTraits.h>
 #import <UIKit/UIView.h>
 
-#if !(__has_feature(objc_instancetype))
-#define instancetype id
-#endif
-
 @class UIFont;
 
 ///---------------------
@@ -54,7 +50,7 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
 
 
 /**
- Codeless drop-in universal library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView. Neither need to write any code nor any setup required and much more. A generic version of KeyboardManagement. https://developer.apple.com/Library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html
+ Codeless drop-in universal library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView. Neither need to write any code nor any setup required and much more. A generic version of KeyboardManagement. https://developer.apple.com/library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html
  */
 @interface IQKeyboardManager : NSObject
 
@@ -65,7 +61,7 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
 /**
  Returns the default singleton instance.
  */
-+ (instancetype)sharedManager;
++ (nonnull instancetype)sharedManager;
 
 /**
  Enable/disable managing distance between keyboard and textField. Default is YES(Enabled when class loads in `+(void)load` method).
@@ -82,26 +78,66 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
  */
 @property(nonatomic, assign) BOOL preventShowingBottomBlankSpace;
 
+/**
+ Refreshes textField/textView position if any external changes is explicitly made by user.
+ */
+- (void)reloadLayoutIfNeeded;
+
+/** 
+ Boolean to know if keyboard is showing.
+ */
+@property(nonatomic, assign, readonly, getter = isKeyboardShowing) BOOL  keyboardShowing;
+
+/**
+ moved distance to the top used to maintain distance between keyboard and textField. Most of the time this will be a positive value.
+ */
+@property(nonatomic, assign, readonly) CGFloat movedDistance;
+
+
 ///-------------------------
 /// @name IQToolbar handling
 ///-------------------------
 
 /**
- Automatic add the IQToolbar functionality. Default is YES.
+ Automatic add IQToolbar functionality. Default is YES.
  */
 @property(nonatomic, assign, getter = isEnableAutoToolbar) BOOL enableAutoToolbar;
 
 /**
- AutoToolbar managing behaviour. Default is IQAutoToolbarBySubviews.
- */
+ IQAutoToolbarBySubviews:   Creates Toolbar according to subview's hirarchy of Textfield's in view.
+ IQAutoToolbarByTag:        Creates Toolbar according to tag property of TextField's.
+ IQAutoToolbarByPosition:   Creates Toolbar according to the y,x position of textField in it's superview coordinate.
+
+ Default is IQAutoToolbarBySubviews.
+*/
 @property(nonatomic, assign) IQAutoToolbarManageBehaviour toolbarManageBehaviour;
 
-#ifdef NSFoundationVersionNumber_iOS_6_1
 /**
  If YES, then uses textField's tintColor property for IQToolbar, otherwise tint color is black. Default is NO.
  */
 @property(nonatomic, assign) BOOL shouldToolbarUsesTextFieldTintColor;
-#endif
+
+/**
+ This is used for toolbar.tintColor when textfield.keyboardAppearance is UIKeyboardAppearanceDefault. If shouldToolbarUsesTextFieldTintColor is YES then this property is ignored. Default is nil and uses black color.
+ */
+@property(nullable, nonatomic, strong) UIColor *toolbarTintColor;
+
+/**
+ IQPreviousNextDisplayModeDefault:      Show NextPrevious when there are more than 1 textField otherwise hide.
+ IQPreviousNextDisplayModeAlwaysHide:   Do not show NextPrevious buttons in any case.
+ IQPreviousNextDisplayModeAlwaysShow:   Always show nextPrevious buttons, if there are more than 1 textField then both buttons will be visible but will be shown as disabled.
+ */
+@property(nonatomic, assign) IQPreviousNextDisplayMode previousNextDisplayMode;
+
+/**
+ Toolbar done button icon, If nothing is provided then check toolbarDoneBarButtonItemText to draw done button.
+ */
+@property(nullable, nonatomic, strong) UIImage *toolbarDoneBarButtonItemImage;
+
+/**
+ Toolbar done button text, If nothing is provided then system default 'UIBarButtonSystemItemDone' will be used.
+ */
+@property(nullable, nonatomic, strong) NSString *toolbarDoneBarButtonItemText;
 
 /**
  If YES, then it add the textField's placeholder text on IQToolbar. Default is YES.
@@ -111,23 +147,12 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
 /**
  Placeholder Font. Default is nil.
  */
-@property(nonatomic, strong) UIFont *placeholderFont;
-
-///--------------------------
-/// @name UITextView handling
-///--------------------------
+@property(nullable, nonatomic, strong) UIFont *placeholderFont;
 
 /**
- Adjust textView's frame when it is too big in height. Default is NO.
+ Reload all toolbar buttons on the fly.
  */
-@property(nonatomic, assign) BOOL canAdjustTextView;
-
-#ifdef NSFoundationVersionNumber_iOS_6_1
-/**
- Adjust textView's contentInset to fix a bug. for iOS 7.0.x - http://stackoverflow.com/questions/18966675/uitextview-in-ios7-clips-the-last-line-of-text-string Default is YES.
- */
-@property(nonatomic, assign) BOOL shouldFixTextViewClip;
-#endif
+- (void)reloadInputViews;
 
 ///---------------------------------------
 /// @name UIKeyboard appearance overriding
@@ -143,9 +168,9 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
  */
 @property(nonatomic, assign) UIKeyboardAppearance keyboardAppearance;
 
-///---------------------------------------------
+///-----------------------------------------------------------
 /// @name UITextField/UITextView Next/Previous/Resign handling
-///---------------------------------------------
+///-----------------------------------------------------------
 
 /**
  Resigns Keyboard on touching outside of UITextField/View. Default is NO.
@@ -177,21 +202,12 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
  */
 - (BOOL)goNext;
 
-///----------------------------
-/// @name UIScrollView handling
-///----------------------------
-
-/**
- Restore scrollViewContentOffset when resigning from scrollView. Default is NO.
- */
-@property(nonatomic, assign) BOOL shouldRestoreScrollViewContentOffset;
-
-///------------------------------------------------
+///-----------------------
 /// @name UISound handling
-///------------------------------------------------
+///-----------------------
 
 /**
- If YES, then it plays inputClick sound on next/previous/done click.
+ If YES, then it plays inputClick sound on next/previous/done click. Default is YES.
  */
 @property(nonatomic, assign) BOOL shouldPlayInputClicks;
 
@@ -200,98 +216,104 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
 ///---------------------------
 
 /**
- If YES, then uses keyboard default animation curve style to move view, otherwise uses UIViewAnimationOptionCurveEaseInOut animation style. Default is YES.
- 
- @warning Sometimes strange animations may be produced if uses default curve style animation in iOS 7 and changing the textFields very frequently.
- */
-@property(nonatomic, assign) BOOL shouldAdoptDefaultKeyboardAnimation;
-
-/**
  If YES, then calls 'setNeedsLayout' and 'layoutIfNeeded' on any frame update of to viewController's view.
  */
 @property(nonatomic, assign) BOOL layoutIfNeededOnUpdate;
 
-///------------------------------------
-/// @name Class Level disabling methods
-///------------------------------------
+///-----------------------------------------------
+/// @name InteractivePopGestureRecognizer handling
+///-----------------------------------------------
 
 /**
- Disable adjusting view in disabledClass
- 
- @param disabledClass Class in which library should not adjust view to show textField.
+ If YES, then always consider UINavigationController.view begin point as {0,0}, this is a workaround to fix a bug #464 because there are no notification mechanism exist when UINavigationController.view.frame gets changed internally.
  */
--(void)disableInViewControllerClass:(Class)disabledClass;
+@property(nonatomic, assign) BOOL shouldFixInteractivePopGestureRecognizer;
+
+///---------------------------------------------
+/// @name Class Level enabling/disabling methods
+///---------------------------------------------
 
 /**
- Re-enable adjusting textField in disabledClass
- 
- @param disabledClass Class in which library should re-enable adjust view to show textField.
+ Disable distance handling within the scope of disabled distance handling viewControllers classes. Within this scope, 'enabled' property is ignored. Class should be kind of UIViewController. Default is [UITableViewController, UIAlertController, _UIAlertControllerTextFieldViewController].
  */
--(void)removeDisableInViewControllerClass:(Class)disabledClass;
+@property(nonatomic, strong, nonnull, readonly) NSMutableSet<Class> *disabledDistanceHandlingClasses;
 
 /**
- Returns YES if ViewController class is disabled for library, otherwise returns NO.
- 
- @param disabledClass Class which is to check for it's disability.
+ Enable distance handling within the scope of enabled distance handling viewControllers classes. Within this scope, 'enabled' property is ignored. Class should be kind of UIViewController. Default is [].
  */
--(BOOL)isDisableInViewControllerClass:(Class)disabledClass;
+@property(nonatomic, strong, nonnull, readonly) NSMutableSet<Class> *enabledDistanceHandlingClasses;
 
 /**
- Disable automatic toolbar creation in in toolbarDisabledClass
- 
- @param toolbarDisabledClass Class in which library should not add toolbar over textField.
+ Disable automatic toolbar creation within the scope of disabled toolbar viewControllers classes. Within this scope, 'enableAutoToolbar' property is ignored. Class should be kind of UIViewController. Default is [UIAlertController, _UIAlertControllerTextFieldViewController].
  */
--(void)disableToolbarInViewControllerClass:(Class)toolbarDisabledClass;
+@property(nonatomic, strong, nonnull, readonly) NSMutableSet<Class> *disabledToolbarClasses;
 
 /**
- Re-enable automatic toolbar creation in in toolbarDisabledClass
- 
- @param toolbarDisabledClass Class in which library should re-enable automatic toolbar creation over textField.
+ Enable automatic toolbar creation within the scope of enabled toolbar viewControllers classes. Within this scope, 'enableAutoToolbar' property is ignored. Class should be kind of UIViewController. Default is [].
  */
--(void)removeDisableToolbarInViewControllerClass:(Class)toolbarDisabledClass;
+@property(nonatomic, strong, nonnull, readonly) NSMutableSet<Class> *enabledToolbarClasses;
 
 /**
- Returns YES if toolbar is disabled in ViewController class, otherwise returns NO.
- 
- @param toolbarDisabledClass Class which is to check for toolbar disability.
+ Allowed subclasses of UIView to add all inner textField, this will allow to navigate between textField contains in different superview. Class should be kind of UIView. Default is [UITableView, UICollectionView, IQPreviousNextView].
  */
--(BOOL)isDisableToolbarInViewControllerClass:(Class)toolbarDisabledClass;
+@property(nonatomic, strong, nonnull, readonly) NSMutableSet<Class> *toolbarPreviousNextAllowedClasses;
 
 /**
- Consider provided customView class as superView of all inner textField for calculating next/previous button logic.
- 
- @param toolbarPreviousNextConsideredClass Custom UIView subclass Class in which library should consider all inner textField as siblings and add next/previous accordingly.
+ Disabled classes to ignore 'shouldResignOnTouchOutside' property, Class should be kind of UIViewController. Default is [UIAlertController, UIAlertControllerTextFieldViewController]
  */
--(void)considerToolbarPreviousNextInViewClass:(Class)toolbarPreviousNextConsideredClass;
+@property(nonatomic, strong, nonnull, readonly) NSMutableSet<Class> *disabledTouchResignedClasses;
 
 /**
- Remove Consideration for provided customView class as superView of all inner textField for calculating next/previous button logic.
- 
- @param toolbarPreviousNextConsideredClass Custom UIView subclass Class in which library should remove consideration for all inner textField as superView.
+ Enabled classes to forcefully enable 'shouldResignOnTouchOutsite' property. Class should be kind of UIViewController. Default is [].
  */
--(void)removeConsiderToolbarPreviousNextInViewClass:(Class)toolbarPreviousNextConsideredClass;
+@property(nonatomic, strong, nonnull, readonly) NSMutableSet<Class> *enabledTouchResignedClasses;
 
 /**
- Returns YES if inner hierarchy is considered for previous/next in class, otherwise returns NO.
- 
- @param toolbarPreviousNextConsideredClass Class which is to check for previous next consideration
+ if shouldResignOnTouchOutside is enabled then you can customise the behaviour to not recognise gesture touches on some specific view subclasses. Class should be kind of UIView. Default is [UIControl, UINavigationBar]
  */
--(BOOL)isConsiderToolbarPreviousNextInViewClass:(Class)toolbarPreviousNextConsideredClass;
+@property(nonatomic, strong, nonnull, readonly) NSMutableSet<Class> *touchResignedGestureIgnoreClasses;
 
+///-------------------------------------------
+/// @name Third Party Library support
+/// Add TextField/TextView Notifications customised NSNotifications. For example while using YYTextView https://github.com/ibireme/YYText
+///-------------------------------------------
+
+/**
+ Add/Remove customised Notification for third party customised TextField/TextView. Please be aware that the NSNotification object must be idential to UITextField/UITextView NSNotification objects and customised TextField/TextView support must be idential to UITextField/UITextView.
+ @param didBeginEditingNotificationName This should be identical to UITextViewTextDidBeginEditingNotification
+ @param didEndEditingNotificationName This should be identical to UITextViewTextDidEndEditingNotification
+ */
+-(void)registerTextFieldViewClass:(nonnull Class)aClass
+  didBeginEditingNotificationName:(nonnull NSString *)didBeginEditingNotificationName
+    didEndEditingNotificationName:(nonnull NSString *)didEndEditingNotificationName;
+-(void)unregisterTextFieldViewClass:(nonnull Class)aClass
+    didBeginEditingNotificationName:(nonnull NSString *)didBeginEditingNotificationName
+      didEndEditingNotificationName:(nonnull NSString *)didEndEditingNotificationName;
+
+///----------------------------------------
+/// @name Debugging & Developer options
+///----------------------------------------
+
+@property(nonatomic, assign) BOOL enableDebugging;
+
+/**
+ @warning Use below methods to completely enable/disable notifications registered by library internally. Please keep in mind that library is totally dependent on NSNotification of UITextField, UITextField, Keyboard etc. If you do unregisterAllNotifications then library will not work at all. You should only use below methods if you want to completedly disable all library functions. You should use below methods at your own risk.
+ */
+-(void)registerAllNotifications;
+-(void)unregisterAllNotifications;
 
 ///----------------------------------------
 /// @name Must not be used for subclassing.
 ///----------------------------------------
 
 /**
- Should create only one instance of class. Should not call init.
+ Unavailable. Please use sharedManager method
  */
-- (instancetype)init	__attribute__((unavailable("init is not available in IQKeyboardManager, Use sharedManager"))) NS_DESIGNATED_INITIALIZER;
+-(nonnull instancetype)init NS_UNAVAILABLE;
 
 /**
- Should create only one instance of class. Should not call new.
+ Unavailable. Please use sharedManager method
  */
-+ (instancetype)new	__attribute__((unavailable("new is not available in IQKeyboardManager, Use sharedManager")));
++ (nonnull instancetype)new NS_UNAVAILABLE;
 
 @end
-

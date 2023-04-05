@@ -1,7 +1,7 @@
 //
-//  IQKeyboardReturnKeyHandler.m
+// IQKeyboardReturnKeyHandler.m
 // https://github.com/hackiftekhar/IQKeyboardManager
-// Copyright (c) 2013-15 Iftekhar Qurashi.
+// Copyright (c) 2013-16 Iftekhar Qurashi.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import "IQKeyboardReturnKeyHandler.h"
-
+#import "IQKeyboardManager.h"
 #import "IQUIView+Hierarchy.h"
 #import "IQNSArray+Sort.h"
 
@@ -30,12 +30,7 @@
 
 #import <UIKit/UITextField.h>
 #import <UIKit/UITextView.h>
-#import <UIKit/UITableView.h>
 #import <UIKit/UIViewController.h>
-
-#ifdef NSFoundationVersionNumber_iOS_5_1
-#import <UIKit/UICollectionView.h>
-#endif
 
 NSString *const kIQTextField                =   @"kIQTextField";
 NSString *const kIQTextFieldDelegate        =   @"kIQTextFieldDelegate";
@@ -54,7 +49,6 @@ NSString *const kIQTextFieldReturnKeyType   =   @"kIQTextFieldReturnKeyType";
 }
 
 @synthesize lastTextFieldReturnKeyType = _lastTextFieldReturnKeyType;
-@synthesize toolbarManageBehaviour = _toolbarManageBehaviour;
 @synthesize delegate = _delegate;
 
 - (instancetype)init
@@ -63,23 +57,27 @@ NSString *const kIQTextFieldReturnKeyType   =   @"kIQTextFieldReturnKeyType";
     return self;
 }
 
--(instancetype)initWithViewController:(UIViewController*)controller
+-(instancetype)initWithViewController:(nullable UIViewController*)controller
 {
     self = [super init];
     
     if (self)
     {
         textFieldInfoCache = [[NSMutableSet alloc] init];
-        [self addResponderFromView:controller.view];
+        
+        if (controller.view)
+        {
+            [self addResponderFromView:controller.view];
+        }
     }
     
     return self;
 }
 
--(NSDictionary*)textFieldCachedInfo:(UITextField*)textField
+-(NSDictionary*)textFieldViewCachedInfo:(UIView*)textField
 {
     for (NSDictionary *infoDict in textFieldInfoCache)
-        if ([infoDict objectForKey:kIQTextField] == textField)  return infoDict;
+        if (infoDict[kIQTextField] == textField)  return infoDict;
     
     return nil;
 }
@@ -89,70 +87,68 @@ NSString *const kIQTextFieldReturnKeyType   =   @"kIQTextFieldReturnKeyType";
 {
     NSArray *textFields = [view deepResponderViews];
     
-    for (UITextField *textField in textFields)  [self addTextFieldView:textField];
+    for (UIView *textField in textFields)  [self addTextFieldView:textField];
 }
 
 -(void)removeResponderFromView:(UIView*)view
 {
     NSArray *textFields = [view deepResponderViews];
     
-    for (UITextField *textField in textFields)  [self removeTextFieldView:textField];
+    for (UIView *textField in textFields)  [self removeTextFieldView:textField];
 }
 
--(void)removeTextFieldView:(UITextField*)textField
+-(void)removeTextFieldView:(UIView*)view
 {
-    NSDictionary *dict = [self textFieldCachedInfo:textField];
+    NSDictionary *dict = [self textFieldViewCachedInfo:view];
     
     if (dict)
     {
-        textField.keyboardType = [[dict objectForKey:kIQTextFieldReturnKeyType] integerValue];
-        textField.delegate = [dict objectForKey:kIQTextFieldDelegate];
+        if ([view isKindOfClass:[UITextField class]] || [view isKindOfClass:[UITextView class]])
+        {
+            UITextField *textField = (UITextField*)view;
+            textField.returnKeyType = (UIReturnKeyType)[dict[kIQTextFieldReturnKeyType] integerValue];
+            textField.delegate = dict[kIQTextFieldDelegate];
+        }
         [textFieldInfoCache removeObject:dict];
     }
 }
 
--(void)addTextFieldView:(UITextField*)textField
+-(void)addTextFieldView:(UIView*)view
 {
-    NSMutableDictionary *dictInfo = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     
-    [dictInfo setObject:textField forKey:kIQTextField];
-    [dictInfo setObject:[NSNumber numberWithInteger:textField.returnKeyType] forKey:kIQTextFieldReturnKeyType];
+    dict[kIQTextField] = view;
     
-    if (textField.delegate) [dictInfo setObject:textField.delegate forKey:kIQTextFieldDelegate];
-
-    [textField setDelegate:self];
-
-    [textFieldInfoCache addObject:dictInfo];
-}
-
-#pragma mark - Overriding lastTextFieldReturnKeyType
--(void)setLastTextFieldReturnKeyType:(UIReturnKeyType)lastTextFieldReturnKeyType
-{
-    _lastTextFieldReturnKeyType = lastTextFieldReturnKeyType;
-    
-    for (NSDictionary *infoDict in textFieldInfoCache)
+    if ([view isKindOfClass:[UITextField class]] || [view isKindOfClass:[UITextView class]])
     {
-        UITextField *textField = [infoDict objectForKey:kIQTextField];
-
-        [self updateReturnKeyTypeOnTextField:textField];
+        UITextField *textField = (UITextField*)view;
+        dict[kIQTextFieldReturnKeyType] = @(textField.returnKeyType);
+        if (textField.delegate) dict[kIQTextFieldDelegate] = textField.delegate;
+        [textField setDelegate:self];
     }
+
+    [textFieldInfoCache addObject:dict];
 }
 
 -(void)updateReturnKeyTypeOnTextField:(UIView*)textField
 {
-    UIView *tableView = [textField superviewOfClassType:[UITableView class]];
+    UIView *superConsideredView;
     
-#ifdef NSFoundationVersionNumber_iOS_5_1
-    if (tableView == nil)   tableView = [textField superviewOfClassType:[UICollectionView class]];
-#endif
-
+    //If find any consider responderView in it's upper hierarchy then will get deepResponderView. (Bug ID: #347)
+    for (Class consideredClass in [[IQKeyboardManager sharedManager] toolbarPreviousNextAllowedClasses])
+    {
+        superConsideredView = [textField superviewOfClassType:consideredClass];
+        
+        if (superConsideredView != nil)
+            break;
+    }
 
     NSArray *textFields = nil;
 
     //If there is a tableView in view's hierarchy, then fetching all it's subview that responds. No sorting for tableView, it's by subView position.
-    if (tableView)  //     //   (Enhancement ID: #22)
+    if (superConsideredView)  //     //   (Enhancement ID: #22)
     {
-        textFields = [tableView deepResponderViews];
+        textFields = [superConsideredView deepResponderViews];
     }
     //Otherwise fetching all the siblings
     else
@@ -160,7 +156,7 @@ NSString *const kIQTextFieldReturnKeyType   =   @"kIQTextFieldReturnKeyType";
         textFields = [textField responderSiblings];
         
         //Sorting textFields according to behaviour
-        switch (_toolbarManageBehaviour)
+        switch ([[IQKeyboardManager sharedManager] toolbarManageBehaviour])
         {
                 //If needs to sort it by tag
             case IQAutoToolbarByTag:
@@ -183,19 +179,25 @@ NSString *const kIQTextFieldReturnKeyType   =   @"kIQTextFieldReturnKeyType";
 
 #pragma mark - Goto next or Resign.
 
--(void)goToNextResponderOrResign:(UIView*)textField
+-(BOOL)goToNextResponderOrResign:(UIView*)textField
 {
-    UIView *tableView = [textField superviewOfClassType:[UITableView class]];
-#ifdef NSFoundationVersionNumber_iOS_5_1
-    if (tableView == nil)   tableView = [textField superviewOfClassType:[UICollectionView class]];
-#endif
+    UIView *superConsideredView;
+    
+    //If find any consider responderView in it's upper hierarchy then will get deepResponderView. (Bug ID: #347)
+    for (Class consideredClass in [[IQKeyboardManager sharedManager] toolbarPreviousNextAllowedClasses])
+    {
+        superConsideredView = [textField superviewOfClassType:consideredClass];
+        
+        if (superConsideredView != nil)
+            break;
+    }
     
     NSArray *textFields = nil;
     
     //If there is a tableView in view's hierarchy, then fetching all it's subview that responds. No sorting for tableView, it's by subView position.
-    if (tableView)  //     //   (Enhancement ID: #22)
+    if (superConsideredView)  //     //   (Enhancement ID: #22)
     {
-        textFields = [tableView deepResponderViews];
+        textFields = [superConsideredView deepResponderViews];
     }
     //Otherwise fetching all the siblings
     else
@@ -203,7 +205,7 @@ NSString *const kIQTextFieldReturnKeyType   =   @"kIQTextFieldReturnKeyType";
         textFields = [textField responderSiblings];
         
         //Sorting textFields according to behaviour
-        switch (_toolbarManageBehaviour)
+        switch ([[IQKeyboardManager sharedManager] toolbarManageBehaviour])
         {
                 //If needs to sort it by tag
             case IQAutoToolbarByTag:
@@ -224,14 +226,31 @@ NSString *const kIQTextFieldReturnKeyType   =   @"kIQTextFieldReturnKeyType";
     NSUInteger index = [textFields indexOfObject:textField];
     
     //If it is not last textField. then it's next object becomeFirstResponder.
-    (index != NSNotFound && index < textFields.count-1) ?   [[textFields objectAtIndex:index+1] becomeFirstResponder]  :   [textField resignFirstResponder];
+    if (index != NSNotFound && index < textFields.count-1)
+    {
+        [textFields[index+1] becomeFirstResponder];
+        return NO;
+    }
+    else
+    {
+        [textField resignFirstResponder];
+        return YES;
+    }
 }
 
 #pragma mark - TextField delegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    if ([self.delegate respondsToSelector:@selector(textFieldShouldBeginEditing:)])
-        return [self.delegate textFieldShouldBeginEditing:textField];
+    id<UITextFieldDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textField];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
+    if ([delegate respondsToSelector:@selector(textFieldShouldBeginEditing:)])
+        return [delegate textFieldShouldBeginEditing:textField];
     else
         return YES;
 }
@@ -240,69 +259,157 @@ NSString *const kIQTextFieldReturnKeyType   =   @"kIQTextFieldReturnKeyType";
 {
     [self updateReturnKeyTypeOnTextField:textField];
 
-    if ([self.delegate respondsToSelector:@selector(textFieldDidBeginEditing:)])
-        [self.delegate textFieldDidBeginEditing:textField];
+    id<UITextFieldDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textField];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
+    if ([delegate respondsToSelector:@selector(textFieldDidBeginEditing:)])
+        [delegate textFieldDidBeginEditing:textField];
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-    if ([self.delegate respondsToSelector:@selector(textFieldShouldEndEditing:)])
-        return [self.delegate textFieldShouldEndEditing:textField];
+    id<UITextFieldDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textField];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+
+    if ([delegate respondsToSelector:@selector(textFieldShouldEndEditing:)])
+        return [delegate textFieldShouldEndEditing:textField];
     else
         return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if ([self.delegate respondsToSelector:@selector(textFieldDidEndEditing:)])
-        [self.delegate textFieldDidEndEditing:textField];
+    id<UITextFieldDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textField];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
+    if ([delegate respondsToSelector:@selector(textFieldDidEndEditing:)])
+        [delegate textFieldDidEndEditing:textField];
 }
+
+//Xcode8, compile validation
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+
+- (void)textFieldDidEndEditing:(UITextField *)textField reason:(UITextFieldDidEndEditingReason)reason
+{
+    id<UITextFieldDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textField];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
+    if ([delegate respondsToSelector:@selector(textFieldDidEndEditing:reason:)])
+        [delegate textFieldDidEndEditing:textField reason:reason];
+}
+
+#endif
+
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if ([self.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)])
-        return [self.delegate textField:textField shouldChangeCharactersInRange:range replacementString:string];
+    id<UITextFieldDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textField];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
+    if ([delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)])
+        return [delegate textField:textField shouldChangeCharactersInRange:range replacementString:string];
     else
         return YES;
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
-    if ([self.delegate respondsToSelector:@selector(textFieldShouldClear:)])
-        return [self.delegate textFieldShouldClear:textField];
+    id<UITextFieldDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textField];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
+    if ([delegate respondsToSelector:@selector(textFieldShouldClear:)])
+        return [delegate textFieldShouldClear:textField];
     else
         return YES;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    BOOL shouldReturn = YES;
-
-    if ([self.delegate respondsToSelector:@selector(textFieldShouldReturn:)])
-        shouldReturn = [self.delegate textFieldShouldReturn:textField];
-
-    if (shouldReturn)
+    id<UITextFieldDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
     {
-        [self goToNextResponderOrResign:textField];
+        NSDictionary *dict = [self textFieldViewCachedInfo:textField];
+        delegate = dict[kIQTextFieldDelegate];
     }
     
-    return shouldReturn;
+    if ([delegate respondsToSelector:@selector(textFieldShouldReturn:)])
+    {
+        BOOL shouldReturn = [delegate textFieldShouldReturn:textField];
+
+        if (shouldReturn)
+        {
+            shouldReturn = [self goToNextResponderOrResign:textField];
+        }
+        
+        return shouldReturn;
+    }
+    else
+    {
+        return [self goToNextResponderOrResign:textField];
+    }
 }
 
 
 #pragma mark - TextView delegate
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    if ([self.delegate respondsToSelector:@selector(textViewShouldBeginEditing:)])
-        return [self.delegate textViewShouldBeginEditing:textView];
+    id<UITextViewDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textView];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
+    if ([delegate respondsToSelector:@selector(textViewShouldBeginEditing:)])
+        return [delegate textViewShouldBeginEditing:textView];
     else
         return YES;
 }
 
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
-    if ([self.delegate respondsToSelector:@selector(textViewShouldEndEditing:)])
-        return [self.delegate textViewShouldEndEditing:textView];
+    id<UITextViewDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textView];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
+    if ([delegate respondsToSelector:@selector(textViewShouldEndEditing:)])
+        return [delegate textViewShouldEndEditing:textView];
     else
         return YES;
 }
@@ -311,26 +418,50 @@ NSString *const kIQTextFieldReturnKeyType   =   @"kIQTextFieldReturnKeyType";
 {
     [self updateReturnKeyTypeOnTextField:textView];
 
-    if ([self.delegate respondsToSelector:@selector(textViewDidBeginEditing:)])
-        [self.delegate textViewDidBeginEditing:textView];
+    id<UITextViewDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textView];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
+    if ([delegate respondsToSelector:@selector(textViewDidBeginEditing:)])
+        [delegate textViewDidBeginEditing:textView];
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    if ([self.delegate respondsToSelector:@selector(textViewDidEndEditing:)])
-        [self.delegate textViewDidEndEditing:textView];
+    id<UITextViewDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textView];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
+    if ([delegate respondsToSelector:@selector(textViewDidEndEditing:)])
+        [delegate textViewDidEndEditing:textView];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
+    id<UITextViewDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textView];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
     BOOL shouldReturn = YES;
     
-    if ([self.delegate respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)])
-        shouldReturn = [self.delegate textView:textView shouldChangeTextInRange:range replacementText:text];
+    if ([delegate respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)])
+        shouldReturn = [delegate textView:textView shouldChangeTextInRange:range replacementText:text];
     
     if (shouldReturn && [text isEqualToString:@"\n"])
     {
-        [self goToNextResponderOrResign:textView];
+        shouldReturn = [self goToNextResponderOrResign:textView];
     }
     
     return shouldReturn;
@@ -338,43 +469,119 @@ NSString *const kIQTextFieldReturnKeyType   =   @"kIQTextFieldReturnKeyType";
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    if ([self.delegate respondsToSelector:@selector(textViewDidChange:)])
-        [self.delegate textViewDidChange:textView];
+    id<UITextViewDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textView];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
+    if ([delegate respondsToSelector:@selector(textViewDidChange:)])
+        [delegate textViewDidChange:textView];
 }
 
 - (void)textViewDidChangeSelection:(UITextView *)textView
 {
-    if ([self.delegate respondsToSelector:@selector(textViewDidChangeSelection:)])
-        [self.delegate textViewDidChangeSelection:textView];
+    id<UITextViewDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textView];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
+    if ([delegate respondsToSelector:@selector(textViewDidChangeSelection:)])
+        [delegate textViewDidChangeSelection:textView];
 }
 
-#ifdef NSFoundationVersionNumber_iOS_6_1
+//Xcode8, compile validation
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
 
-- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction
 {
-    if ([self.delegate respondsToSelector:@selector(textView:shouldInteractWithURL:inRange:)])
-        return [self.delegate textView:textView shouldInteractWithURL:URL inRange:characterRange];
+    id<UITextViewDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textView];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
+    if ([delegate respondsToSelector:@selector(textView:shouldInteractWithURL:inRange:interaction:)])
+        return [delegate textView:textView shouldInteractWithURL:URL inRange:characterRange interaction:interaction];
     else
         return YES;
 }
 
-- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange
+- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction
 {
-    if ([self.delegate respondsToSelector:@selector(textView:shouldInteractWithTextAttachment:inRange:)])
-        return [self.delegate textView:textView shouldInteractWithTextAttachment:textAttachment inRange:characterRange];
+    id<UITextViewDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textView];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
+    if ([delegate respondsToSelector:@selector(textView:shouldInteractWithTextAttachment:inRange:interaction:)])
+        return [delegate textView:textView shouldInteractWithTextAttachment:textAttachment inRange:characterRange interaction:interaction];
     else
         return YES;
 }
 
 #endif
 
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
+{
+    id<UITextViewDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textView];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    if ([delegate respondsToSelector:@selector(textView:shouldInteractWithURL:inRange:)])
+        return [delegate textView:textView shouldInteractWithURL:URL inRange:characterRange];
+#pragma clang diagnostic pop
+    else
+        return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange
+{
+    id<UITextViewDelegate> delegate = self.delegate;
+    
+    if (delegate == nil)
+    {
+        NSDictionary *dict = [self textFieldViewCachedInfo:textView];
+        delegate = dict[kIQTextFieldDelegate];
+    }
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    if ([delegate respondsToSelector:@selector(textView:shouldInteractWithTextAttachment:inRange:)])
+        return [delegate textView:textView shouldInteractWithTextAttachment:textAttachment inRange:characterRange];
+#pragma clang diagnostic pop
+    else
+        return YES;
+}
+
 -(void)dealloc
 {
     for (NSDictionary *dict in textFieldInfoCache)
     {
-        UITextField *textField  = [dict objectForKey:kIQTextField];
-        textField.keyboardType  = [[dict objectForKey:kIQTextFieldReturnKeyType] integerValue];
-        textField.delegate      = [dict objectForKey:kIQTextFieldDelegate];
+        UIView *view  = dict[kIQTextField];
+        
+        if ([view isKindOfClass:[UITextField class]] || [view isKindOfClass:[UITextView class]])
+        {
+            UITextField *textField = (UITextField*)view;
+            textField.returnKeyType  = (UIReturnKeyType)[dict[kIQTextFieldReturnKeyType] integerValue];
+            textField.delegate      = dict[kIQTextFieldDelegate];
+        }
     }
 
     [textFieldInfoCache removeAllObjects];

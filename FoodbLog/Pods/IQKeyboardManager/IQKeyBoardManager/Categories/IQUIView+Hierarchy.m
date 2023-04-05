@@ -1,7 +1,7 @@
 //
-//  UIView+Hierarchy.m
+// IQUIView+Hierarchy.m
 // https://github.com/hackiftekhar/IQKeyboardManager
-// Copyright (c) 2013-15 Iftekhar Qurashi.
+// Copyright (c) 2013-16 Iftekhar Qurashi.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,10 +23,8 @@
 
 #import "IQUIView+Hierarchy.h"
 
-#ifdef NSFoundationVersionNumber_iOS_5_1
 #import <UIKit/UICollectionView.h>
-#endif
-
+#import <UIKit/UIAlertController.h>
 #import <UIKit/UITableView.h>
 #import <UIKit/UITextView.h>
 #import <UIKit/UITextField.h>
@@ -36,42 +34,9 @@
 
 #import <objc/runtime.h>
 
+#import "IQNSArray+Sort.h"
+
 @implementation UIView (IQ_UIView_Hierarchy)
-
-//Special textFields,textViews,scrollViews
-Class UIAlertSheetTextFieldClass;       //UIAlertView
-Class UIAlertSheetTextFieldClass_iOS8;  //UIAlertView
-
-Class UITableViewCellScrollViewClass;   //UITableViewCell
-Class UITableViewWrapperViewClass;      //UITableViewCell
-Class UIQueuingScrollViewClass;         //UIPageViewController
-
-Class UISearchBarTextFieldClass;        //UISearchBar
-
-+(void)initialize
-{
-    [super initialize];
-    
-    UIAlertSheetTextFieldClass          = NSClassFromString(@"UIAlertSheetTextField");
-    UIAlertSheetTextFieldClass_iOS8     = NSClassFromString(@"_UIAlertControllerTextField");
-    
-    UITableViewCellScrollViewClass      = NSClassFromString(@"UITableViewCellScrollView");
-    UITableViewWrapperViewClass         = NSClassFromString(@"UITableViewWrapperView");
-    UIQueuingScrollViewClass            = NSClassFromString(@"_UIQueuingScrollView");
-
-    UISearchBarTextFieldClass           = NSClassFromString(@"UISearchBarTextField");
-}
-
--(void)_setIsAskingCanBecomeFirstResponder:(BOOL)isAskingCanBecomeFirstResponder
-{
-    objc_setAssociatedObject(self, @selector(isAskingCanBecomeFirstResponder), [NSNumber numberWithBool:isAskingCanBecomeFirstResponder], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
--(BOOL)isAskingCanBecomeFirstResponder
-{
-    NSNumber *isAskingCanBecomeFirstResponder = objc_getAssociatedObject(self, @selector(isAskingCanBecomeFirstResponder));
-    return [isAskingCanBecomeFirstResponder boolValue];
-}
 
 -(UIViewController*)viewController
 {
@@ -126,14 +91,30 @@ Class UISearchBarTextFieldClass;        //UISearchBar
     
     while (superview)
     {
-        if ([superview isKindOfClass:classType] &&
-            ([superview isKindOfClass:UITableViewCellScrollViewClass] == NO) &&
-            ([superview isKindOfClass:UITableViewWrapperViewClass] == NO) &&
-            ([superview isKindOfClass:UIQueuingScrollViewClass] == NO))
+        if ([superview isKindOfClass:classType])
         {
-            return superview;
+            //If it's UIScrollView, then validating for special cases
+            if ([superview isKindOfClass:[UIScrollView class]])
+            {
+                NSString *classNameString = NSStringFromClass([superview class]);
+
+                //  If it's not UITableViewWrapperView class, this is internal class which is actually manage in UITableview. The speciality of this class is that it's superview is UITableView.
+                //  If it's not UITableViewCellScrollView class, this is internal class which is actually manage in UITableviewCell. The speciality of this class is that it's superview is UITableViewCell.
+                //If it's not _UIQueuingScrollView class, actually we validate for _ prefix which usually used by Apple internal classes
+                if ([superview.superview isKindOfClass:[UITableView class]] == NO &&
+                    [superview.superview isKindOfClass:[UITableViewCell class]] == NO &&
+                    [classNameString hasPrefix:@"_"] == NO)
+                {
+                    return superview;
+                }
+            }
+            else
+            {
+                return superview;
+            }
         }
-        else    superview = superview.superview;
+        
+        superview = superview.superview;
     }
     
     return nil;
@@ -141,22 +122,21 @@ Class UISearchBarTextFieldClass;        //UISearchBar
 
 -(BOOL)_IQcanBecomeFirstResponder
 {
-    [self _setIsAskingCanBecomeFirstResponder:YES];
-    BOOL _IQcanBecomeFirstResponder = ([self canBecomeFirstResponder] && [self isUserInteractionEnabled] && ![self isHidden] && [self alpha]!=0.0 && ![self isAlertViewTextField]  && ![self isSearchBarTextField]);
+    BOOL _IQcanBecomeFirstResponder = NO;
     
+    if ([self isKindOfClass:[UITextField class]])
+    {
+        _IQcanBecomeFirstResponder = [(UITextField*)self isEnabled];
+    }
+    else if ([self isKindOfClass:[UITextView class]])
+    {
+        _IQcanBecomeFirstResponder = [(UITextView*)self isEditable];
+    }
+
     if (_IQcanBecomeFirstResponder == YES)
     {
-        if ([self isKindOfClass:[UITextField class]])
-        {
-            _IQcanBecomeFirstResponder = [(UITextField*)self isEnabled];
-        }
-        else if ([self isKindOfClass:[UITextView class]])
-        {
-            _IQcanBecomeFirstResponder = [(UITextView*)self isEditable];
-        }
+        _IQcanBecomeFirstResponder = ([self isUserInteractionEnabled] && ![self isHidden] && [self alpha]!=0.0 && ![self isAlertViewTextField]  && ![self isSearchBarTextField]);
     }
-    
-    [self _setIsAskingCanBecomeFirstResponder:NO];
     
     return _IQcanBecomeFirstResponder;
 }
@@ -169,7 +149,7 @@ Class UISearchBarTextFieldClass;        //UISearchBar
     //Array of (UITextField/UITextView's).
     NSMutableArray *tempTextFields = [[NSMutableArray alloc] init];
     
-    for (UITextField *textField in siblings)
+    for (UIView *textField in siblings)
         if ([textField _IQcanBecomeFirstResponder])
             [tempTextFields addObject:textField];
     
@@ -180,13 +160,31 @@ Class UISearchBarTextFieldClass;        //UISearchBar
 {
     NSMutableArray *textFields = [[NSMutableArray alloc] init];
     
-    //subviews are returning in opposite order. So I sorted it according the frames 'y'.
-    NSArray *subViews = [self.subviews sortedArrayUsingComparator:^NSComparisonResult(UIView *view1, UIView *view2) {
+    for (UIView *textField in self.subviews)
+    {
+        if ([textField _IQcanBecomeFirstResponder])
+        {
+            [textFields addObject:textField];
+        }
         
-        CGFloat x1 = CGRectGetMinX(view1.frame);
-        CGFloat y1 = CGRectGetMinY(view1.frame);
-        CGFloat x2 = CGRectGetMinX(view2.frame);
-        CGFloat y2 = CGRectGetMinY(view2.frame);
+        //Sometimes there are hidden or disabled views and textField inside them still recorded, so we added some more validations here (Bug ID: #458)
+        //Uncommented else (Bug ID: #625)
+        if (textField.subviews.count && [textField isUserInteractionEnabled] && ![textField isHidden] && [textField alpha]!=0.0)
+        {
+            [textFields addObjectsFromArray:[textField deepResponderViews]];
+        }
+    }
+
+    //subviews are returning in incorrect order. Sorting according the frames 'y'.
+    return [textFields sortedArrayUsingComparator:^NSComparisonResult(UIView *view1, UIView *view2) {
+        
+        CGRect frame1 = [view1 convertRect:view1.bounds toView:self];
+        CGRect frame2 = [view2 convertRect:view2.bounds toView:self];
+        
+        CGFloat x1 = CGRectGetMinX(frame1);
+        CGFloat y1 = CGRectGetMinY(frame1);
+        CGFloat x2 = CGRectGetMinX(frame2);
+        CGFloat y2 = CGRectGetMinY(frame2);
         
         if (y1 < y2)  return NSOrderedAscending;
         
@@ -199,18 +197,6 @@ Class UISearchBarTextFieldClass;        //UISearchBar
         
         else    return NSOrderedSame;
     }];
-
-    for (UITextField *textField in subViews)
-    {
-        if ([textField _IQcanBecomeFirstResponder])
-        {
-            [textFields addObject:textField];
-        }
-        else if (textField.subviews.count)
-        {
-            [textFields addObjectsFromArray:[textField deepResponderViews]];
-        }
-    }
 
     return textFields;
 }
@@ -321,12 +307,44 @@ Class UISearchBarTextFieldClass;        //UISearchBar
 
 -(BOOL)isSearchBarTextField
 {
-    return ([self isKindOfClass:UISearchBarTextFieldClass] || [self isKindOfClass:[UISearchBar class]]);
+    UIResponder *searchBar = [self nextResponder];
+    
+    BOOL isSearchBarTextField = NO;
+    while (searchBar && isSearchBarTextField == NO)
+    {
+        if ([searchBar isKindOfClass:[UISearchBar class]])
+        {
+            isSearchBarTextField = YES;
+            break;
+        }
+        else if ([searchBar isKindOfClass:[UIViewController class]])    //If found viewcontroller but still not found UISearchBar then it's not the search bar textfield
+        {
+            break;
+        }
+        
+        searchBar = [searchBar nextResponder];
+    }
+    
+    return isSearchBarTextField;
 }
 
 -(BOOL)isAlertViewTextField
 {
-    return ([self isKindOfClass:UIAlertSheetTextFieldClass] || [self isKindOfClass:UIAlertSheetTextFieldClass_iOS8]);
+    UIResponder *alertViewController = [self viewController];
+    
+    BOOL isAlertViewTextField = NO;
+    while (alertViewController && isAlertViewTextField == NO)
+    {
+        if ([alertViewController isKindOfClass:[UIAlertController class]])
+        {
+            isAlertViewTextField = YES;
+            break;
+        }
+
+        alertViewController = [alertViewController nextResponder];
+    }
+    
+    return isAlertViewTextField;
 }
 
 @end

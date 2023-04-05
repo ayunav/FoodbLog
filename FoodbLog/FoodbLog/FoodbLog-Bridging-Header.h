@@ -3,3 +3,5 @@
 //
 
 #import "FoodLog.h"
+#import "FoodbLogCollectionViewController.h"
+#import "FoodFeedViewController.h"

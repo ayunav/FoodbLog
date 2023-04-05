@@ -47,8 +47,8 @@
 #pragma mark -
 #pragma mark Load
 
-- (BFTask *)loadInBackground {
-    BFTaskCompletionSource *source = [BFTaskCompletionSource taskCompletionSource];
+- (BFTask<UIImage *> *)loadInBackground {
+    BFTaskCompletionSource<UIImage *> *source = [BFTaskCompletionSource taskCompletionSource];
     [self loadInBackground:^(UIImage *image, NSError *error) {
         if (error) {
             [source trySetError:error];

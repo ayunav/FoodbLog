@@ -21,6 +21,7 @@
 
 #import "PFQueryTableViewController.h"
 
+#import <Bolts/BFExecutor.h>
 #import <Bolts/BFTask.h>
 #import <Bolts/BFTaskCompletionSource.h>
 
@@ -31,6 +32,7 @@
 #import "PFLoadingView.h"
 #import "PFLocalization.h"
 #import "PFTableViewCell.h"
+#import "PFUIAlertView.h"
 
 // Add headers to kill any warnings.
 // `initWithStyle:` is a UITableViewController method.
@@ -44,7 +46,7 @@
 @end
 
 @interface PFQueryTableViewController () {
-    NSMutableArray *_mutableObjects;
+    NSMutableArray<PFObject *> *_mutableObjects;
 
     BOOL _firstLoad;           // Whether we have loaded the first set of objects
     NSInteger _currentPage;    // The last page that was loaded
@@ -211,18 +213,18 @@
     _currentPage = 0;
 }
 
-- (BFTask *)loadObjects {
+- (BFTask<NSArray<__kindof PFObject *> *> *)loadObjects {
     return [self loadObjects:0 clear:YES];
 }
 
-- (BFTask *)loadObjects:(NSInteger)page clear:(BOOL)clear {
+- (BFTask<NSArray<__kindof PFObject *> *> *)loadObjects:(NSInteger)page clear:(BOOL)clear {
     self.loading = YES;
     [self objectsWillLoad];
 
-    BFTaskCompletionSource *source = [BFTaskCompletionSource taskCompletionSource];
-
     PFQuery *query = [self queryForTable];
     [self _alterQuery:query forLoadingPage:page];
+
+    BFTaskCompletionSource<NSArray<__kindof PFObject *> *> *source = [BFTaskCompletionSource taskCompletionSource];
     [query findObjectsInBackgroundWithBlock:^(NSArray *foundObjects, NSError *error) {
         if (![Parse isLocalDatastoreEnabled] &&
             query.cachePolicy != kPFCachePolicyCacheOnly &&
@@ -251,7 +253,11 @@
         [self objectsDidLoad:error];
         [self.refreshControl endRefreshing];
 
-        [source setError:error];
+        if (error) {
+            [source trySetError:error];
+        } else {
+            [source trySetResult:foundObjects];
+        }
     }];
 
     return source.task;
@@ -397,8 +403,8 @@
         [allDeletionTasks addObject:[obj deleteInBackground]];
     }
 
-    [[BFTask taskForCompletionOfAllTasks:allDeletionTasks]
-     continueWithBlock:deletionHandlerBlock];
+    [[BFTask taskForCompletionOfAllTasks:allDeletionTasks] continueWithExecutor:[BFExecutor mainThreadExecutor]
+                                                                      withBlock:deletionHandlerBlock];
 }
 
 - (PFTableViewCell *)tableView:(UITableView *)otherTableView cellForNextPageAtIndexPath:(NSIndexPath *)indexPath {
@@ -408,7 +414,7 @@
     if (cell == nil) {
         cell = [[PFActivityIndicatorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                                        reuseIdentifier:cellIdentifier];
-        cell.textLabel.text = NSLocalizedString(@"Load more...", @"Load more...");
+        cell.textLabel.text = PFLocalizedString(@"Load more...", @"Load more...");
     }
 
     cell.animating = self.loading;
@@ -516,31 +522,10 @@
     // Fully reload on error.
     [self loadObjects];
 
-    NSString *errorMessage = [NSString stringWithFormat:@"%@: \"%@\"",
-                              NSLocalizedString(@"Error occurred during deletion", @"Error occurred during deletion"),
-                              error.localizedDescription];
-
-    if ([UIAlertController class]) {
-        UIAlertController *errorController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", @"Error")
-                                                                                 message:errorMessage
-                                                                          preferredStyle:UIAlertControllerStyleAlert];
-
-        [errorController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK")
-                                                            style:UIAlertActionStyleCancel
-                                                          handler:nil]];
-
-        [self presentViewController:errorController animated:YES completion:nil];
-    } else {
-        // Cast to `id` is required for building succesfully for app extensions,
-        // this code actually never runs in App Extensions, since they are iOS 8.0+, so we are good with just a hack
-        UIAlertView *alertView = [(id)[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error")
-                                                                message:errorMessage
-                                                               delegate:nil
-                                                      cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                      otherButtonTitles:nil];
-
-        [alertView show];
-    }
+    NSString *message = [NSString stringWithFormat:@"%@: \"%@\"",
+                         PFLocalizedString(@"Error occurred during deletion", @"Error occurred during deletion"),
+                         error.localizedDescription];
+    [PFUIAlertView presentAlertInViewController:self withTitle:PFLocalizedString(@"Delete Error", @"Delete Error") message:message];
 }
 
 #pragma mark -
@@ -553,7 +538,7 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (NSArray *)objects {
+- (NSArray<__kindof PFObject *> *)objects {
     return _mutableObjects;
 }
 

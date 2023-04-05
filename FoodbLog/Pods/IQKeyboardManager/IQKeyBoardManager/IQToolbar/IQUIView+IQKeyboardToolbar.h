@@ -1,7 +1,7 @@
 //
-//  UIView+IQToolbar.h
+// IQUIView+IQKeyboardToolbar.h
 // https://github.com/hackiftekhar/IQKeyboardManager
-// Copyright (c) 2013-15 Iftekhar Qurashi.
+// Copyright (c) 2013-16 Iftekhar Qurashi.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -37,9 +37,32 @@
 ///-------------------------
 
 /**
- If shouldHideTitle is YES, then title will not be added to the toolbar. Default to NO.
+ If `shouldHidePlaceholderText` is YES, then title will not be added to the toolbar. Default to NO.
  */
-@property (assign, nonatomic) BOOL shouldHideTitle;
+@property (assign, nonatomic) BOOL shouldHidePlaceholderText;
+
+/**
+ `placeholderText` to override default `placeholder` text when drawing text on toolbar.
+ */
+@property (nullable, strong, nonatomic) NSString* placeholderText;
+
+/**
+ `drawingPlaceholderText` will be actual text used to draw on toolbar. This would either `placeholder` or `placeholderText`.
+ */
+@property (nullable, strong, nonatomic, readonly) NSString* drawingPlaceholderText;
+
+/**
+ Optional target & action to behave toolbar title button as clickable button
+ 
+ @param target Target object.
+ @param action Target Selector.
+ */
+-(void)setTitleTarget:(nullable id)target action:(nullable SEL)action;
+
+/**
+ Customized Invocation to be called on title button action. titleInvocation is internally created using setTitleTarget:action: method.
+ */
+@property (nullable, strong, nonatomic) NSInvocation *titleInvocation;
 
 
 ///-----------------------------------------
@@ -52,7 +75,7 @@
  @param target Target object.
  @param action Target Selector.
  */
--(void)setCustomPreviousTarget:(id)target action:(SEL)action;
+-(void)setCustomPreviousTarget:(nullable id)target action:(nullable SEL)action;
 
 /**
  Additional target & action to do get callback action. Note that setting custom `next` selector doesn't affect native `next` functionality, this is just used to notifiy user to do additional work according to need.
@@ -60,7 +83,7 @@
  @param target Target object.
  @param action Target Selector.
  */
--(void)setCustomNextTarget:(id)target action:(SEL)action;
+-(void)setCustomNextTarget:(nullable id)target action:(nullable SEL)action;
 
 /**
  Additional target & action to do get callback action. Note that setting custom `done` selector doesn't affect native `done` functionality, this is just used to notifiy user to do additional work according to need.
@@ -68,22 +91,22 @@
  @param target Target object.
  @param action Target Selector.
  */
--(void)setCustomDoneTarget:(id)target action:(SEL)action;
+-(void)setCustomDoneTarget:(nullable id)target action:(nullable SEL)action;
 
 /**
- Customized Invocation to be called on previous arrow action. previousInvocation is internally created using setCustomPreviousTarget: method.
+ Customized Invocation to be called on previous arrow action. previousInvocation is internally created using setCustomPreviousTarget:action: method.
  */
-@property (strong, nonatomic) NSInvocation *previousInvocation;
+@property (nullable, strong, nonatomic) NSInvocation *previousInvocation;
 
 /**
- Customized Invocation to be called on next arrow action. nextInvocation is internally created using setCustomNextTarget: method.
+ Customized Invocation to be called on next arrow action. nextInvocation is internally created using setCustomNextTarget:action: method.
  */
-@property (strong, nonatomic) NSInvocation *nextInvocation;
+@property (nullable, strong, nonatomic) NSInvocation *nextInvocation;
 
 /**
- Customized Invocation to be called on done action. doneInvocation is internally created using setCustomDoneTarget: method.
+ Customized Invocation to be called on done action. doneInvocation is internally created using setCustomDoneTarget:action: method.
  */
-@property (strong, nonatomic) NSInvocation *doneInvocation;
+@property (nullable, strong, nonatomic) NSInvocation *doneInvocation;
 
 ///------------
 /// @name Done
@@ -95,7 +118,7 @@
  @param target Target object for selector.
  @param action Done button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  */
-- (void)addDoneOnKeyboardWithTarget:(id)target action:(SEL)action;
+- (void)addDoneOnKeyboardWithTarget:(nullable id)target action:(nullable SEL)action;
 
 /**
  Helper function to add Done button on keyboard.
@@ -104,7 +127,7 @@
  @param action Done button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  @param titleText text to show as title in IQToolbar'.
  */
-- (void)addDoneOnKeyboardWithTarget:(id)target action:(SEL)action titleText:(NSString*)titleText;
+- (void)addDoneOnKeyboardWithTarget:(nullable id)target action:(nullable SEL)action titleText:(nullable NSString*)titleText;
 
 /**
  Helper function to add Done button on keyboard.
@@ -113,7 +136,7 @@
  @param action Done button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  @param shouldShowPlaceholder A boolean to indicate whether to show textField placeholder on IQToolbar'.
  */
-- (void)addDoneOnKeyboardWithTarget:(id)target action:(SEL)action shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addDoneOnKeyboardWithTarget:(nullable id)target action:(nullable SEL)action shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
 
 ///------------
 /// @name Right
@@ -126,7 +149,7 @@
  @param target Target object for selector.
  @param action Right button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  */
-- (void)addRightButtonOnKeyboardWithText:(NSString*)text target:(id)target action:(SEL)action;
+- (void)addRightButtonOnKeyboardWithText:(nullable NSString*)text target:(nullable id)target action:(nullable SEL)action;
 
 /**
  Helper function to add Right button on keyboard.
@@ -136,7 +159,7 @@
  @param action Right button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  @param titleText text to show as title in IQToolbar'.
  */
-- (void)addRightButtonOnKeyboardWithText:(NSString*)text target:(id)target action:(SEL)action titleText:(NSString*)titleText;
+- (void)addRightButtonOnKeyboardWithText:(nullable NSString*)text target:(nullable id)target action:(nullable SEL)action titleText:(nullable NSString*)titleText;
 
 /**
  Helper function to add Right button on keyboard.
@@ -146,7 +169,27 @@
  @param action Right button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  @param shouldShowPlaceholder A boolean to indicate whether to show textField placeholder on IQToolbar'.
  */
-- (void)addRightButtonOnKeyboardWithText:(NSString*)text target:(id)target action:(SEL)action shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addRightButtonOnKeyboardWithText:(nullable NSString*)text target:(nullable id)target action:(nullable SEL)action shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+
+/**
+ Helper function to add Right button on keyboard.
+ 
+ @param image Image icon to use as right button.
+ @param target Target object for selector.
+ @param action Right button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
+ @param shouldShowPlaceholder A boolean to indicate whether to show textField placeholder on IQToolbar'.
+ */
+- (void)addRightButtonOnKeyboardWithImage:(nullable UIImage*)image target:(nullable id)target action:(nullable SEL)action shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+
+/**
+ Helper function to add Right button on keyboard.
+ 
+ @param image Image icon to use as right button.
+ @param target Target object for selector.
+ @param action Right button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
+ @param titleText text to show as title in IQToolbar'.
+ */
+- (void)addRightButtonOnKeyboardWithImage:(nullable UIImage*)image target:(nullable id)target action:(nullable SEL)action titleText:(nullable NSString*)titleText;
 
 ///------------------
 /// @name Cancel/Done
@@ -159,7 +202,7 @@
  @param cancelAction Cancel button action name. Usually 'cancelAction:(IQBarButtonItem*)item'.
  @param doneAction Done button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  */
-- (void)addCancelDoneOnKeyboardWithTarget:(id)target cancelAction:(SEL)cancelAction doneAction:(SEL)doneAction;
+- (void)addCancelDoneOnKeyboardWithTarget:(nullable id)target cancelAction:(nullable SEL)cancelAction doneAction:(nullable SEL)doneAction;
 
 /**
  Helper function to add Cancel and Done button on keyboard.
@@ -169,7 +212,7 @@
  @param doneAction Done button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  @param titleText text to show as title in IQToolbar'.
  */
-- (void)addCancelDoneOnKeyboardWithTarget:(id)target cancelAction:(SEL)cancelAction doneAction:(SEL)doneAction titleText:(NSString*)titleText;
+- (void)addCancelDoneOnKeyboardWithTarget:(nullable id)target cancelAction:(nullable SEL)cancelAction doneAction:(nullable SEL)doneAction titleText:(nullable NSString*)titleText;
 
 /**
  Helper function to add Cancel and Done button on keyboard.
@@ -179,7 +222,7 @@
  @param doneAction Done button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  @param shouldShowPlaceholder A boolean to indicate whether to show textField placeholder on IQToolbar'.
  */
-- (void)addCancelDoneOnKeyboardWithTarget:(id)target cancelAction:(SEL)cancelAction doneAction:(SEL)doneAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addCancelDoneOnKeyboardWithTarget:(nullable id)target cancelAction:(nullable SEL)cancelAction doneAction:(nullable SEL)doneAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
 
 ///-----------------
 /// @name Right/Left
@@ -194,7 +237,7 @@
  @param leftButtonAction Left button action name. Usually 'cancelAction:(IQBarButtonItem*)item'.
  @param rightButtonAction Right button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  */
-- (void)addLeftRightOnKeyboardWithTarget:(id)target leftButtonTitle:(NSString*)leftButtonTitle rightButtonTitle:(NSString*)rightButtonTitle leftButtonAction:(SEL)leftButtonAction rightButtonAction:(SEL)rightButtonAction;
+- (void)addLeftRightOnKeyboardWithTarget:(nullable id)target leftButtonTitle:(nullable NSString*)leftButtonTitle rightButtonTitle:(nullable NSString*)rightButtonTitle leftButtonAction:(nullable SEL)leftButtonAction rightButtonAction:(nullable SEL)rightButtonAction;
 
 /**
  Helper function to add Left and Right button on keyboard.
@@ -206,7 +249,7 @@
  @param rightButtonAction Right button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  @param titleText text to show as title in IQToolbar'.
  */
-- (void)addLeftRightOnKeyboardWithTarget:(id)target leftButtonTitle:(NSString*)leftButtonTitle rightButtonTitle:(NSString*)rightButtonTitle leftButtonAction:(SEL)leftButtonAction rightButtonAction:(SEL)rightButtonAction titleText:(NSString*)titleText;
+- (void)addLeftRightOnKeyboardWithTarget:(nullable id)target leftButtonTitle:(nullable NSString*)leftButtonTitle rightButtonTitle:(nullable NSString*)rightButtonTitle leftButtonAction:(nullable SEL)leftButtonAction rightButtonAction:(nullable SEL)rightButtonAction titleText:(nullable NSString*)titleText;
 
 /**
  Helper function to add Left and Right button on keyboard.
@@ -218,24 +261,24 @@
  @param rightButtonAction Right button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  @param shouldShowPlaceholder A boolean to indicate whether to show textField placeholder on IQToolbar'.
  */
-- (void)addLeftRightOnKeyboardWithTarget:(id)target leftButtonTitle:(NSString*)leftButtonTitle rightButtonTitle:(NSString*)rightButtonTitle leftButtonAction:(SEL)leftButtonAction rightButtonAction:(SEL)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addLeftRightOnKeyboardWithTarget:(nullable id)target leftButtonTitle:(nullable NSString*)leftButtonTitle rightButtonTitle:(nullable NSString*)rightButtonTitle leftButtonAction:(nullable SEL)leftButtonAction rightButtonAction:(nullable SEL)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
 
 ///-------------------------
 /// @name Previous/Next/Done
 ///-------------------------
 
 /**
- Helper function to add SegmentedNextPrevious/ArrowNextPrevious and Done button on keyboard.
+ Helper function to add ArrowNextPrevious and Done button on keyboard.
  
  @param target Target object for selector.
  @param previousAction Previous button action name. Usually 'previousAction:(id)item'.
  @param nextAction Next button action name. Usually 'nextAction:(id)item'.
  @param doneAction Done button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  */
-- (void)addPreviousNextDoneOnKeyboardWithTarget:(id)target previousAction:(SEL)previousAction nextAction:(SEL)nextAction doneAction:(SEL)doneAction;
+- (void)addPreviousNextDoneOnKeyboardWithTarget:(nullable id)target previousAction:(nullable SEL)previousAction nextAction:(nullable SEL)nextAction doneAction:(nullable SEL)doneAction;
 
 /**
- Helper function to add SegmentedNextPrevious/ArrowNextPrevious and Done button on keyboard.
+ Helper function to add ArrowNextPrevious and Done button on keyboard.
  
  @param target Target object for selector.
  @param previousAction Previous button action name. Usually 'previousAction:(id)item'.
@@ -243,10 +286,10 @@
  @param doneAction Done button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  @param titleText text to show as title in IQToolbar'.
  */
-- (void)addPreviousNextDoneOnKeyboardWithTarget:(id)target previousAction:(SEL)previousAction nextAction:(SEL)nextAction doneAction:(SEL)doneAction titleText:(NSString*)titleText;
+- (void)addPreviousNextDoneOnKeyboardWithTarget:(nullable id)target previousAction:(nullable SEL)previousAction nextAction:(nullable SEL)nextAction doneAction:(nullable SEL)doneAction titleText:(nullable NSString*)titleText;
 
 /**
- Helper function to add SegmentedNextPrevious/ArrowNextPrevious and Done button on keyboard.
+ Helper function to add ArrowNextPrevious and Done button on keyboard.
  
  @param target Target object for selector.
  @param previousAction Previous button action name. Usually 'previousAction:(id)item'.
@@ -254,14 +297,14 @@
  @param doneAction Done button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  @param shouldShowPlaceholder A boolean to indicate whether to show textField placeholder on IQToolbar'.
  */
-- (void)addPreviousNextDoneOnKeyboardWithTarget:(id)target previousAction:(SEL)previousAction nextAction:(SEL)nextAction doneAction:(SEL)doneAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addPreviousNextDoneOnKeyboardWithTarget:(nullable id)target previousAction:(nullable SEL)previousAction nextAction:(nullable SEL)nextAction doneAction:(nullable SEL)doneAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
 
 ///--------------------------
 /// @name Previous/Next/Right
 ///--------------------------
 
 /**
- Helper function to add SegmentedNextPrevious/ArrowNextPrevious and Right button on keyboard.
+ Helper function to add ArrowNextPrevious and Right button on keyboard.
  
  @param target Target object for selector.
  @param rightButtonTitle Title for rightBarButtonItem, usually 'Done'.
@@ -269,10 +312,10 @@
  @param nextAction Next button action name. Usually 'nextAction:(id)item'.
  @param rightButtonAction RightBarButton action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  */
-- (void)addPreviousNextRightOnKeyboardWithTarget:(id)target rightButtonTitle:(NSString*)rightButtonTitle previousAction:(SEL)previousAction nextAction:(SEL)nextAction rightButtonAction:(SEL)rightButtonAction;
+- (void)addPreviousNextRightOnKeyboardWithTarget:(nullable id)target rightButtonTitle:(nullable NSString*)rightButtonTitle previousAction:(nullable SEL)previousAction nextAction:(nullable SEL)nextAction rightButtonAction:(nullable SEL)rightButtonAction;
 
 /**
- Helper function to add SegmentedNextPrevious/ArrowNextPrevious and Right button on keyboard.
+ Helper function to add ArrowNextPrevious and Right button on keyboard.
  
  @param target Target object for selector.
  @param rightButtonTitle Title for rightBarButtonItem, usually 'Done'.
@@ -281,10 +324,10 @@
  @param rightButtonAction RightBarButton action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  @param titleText text to show as title in IQToolbar'.
  */
-- (void)addPreviousNextRightOnKeyboardWithTarget:(id)target rightButtonTitle:(NSString*)rightButtonTitle previousAction:(SEL)previousAction nextAction:(SEL)nextAction rightButtonAction:(SEL)rightButtonAction titleText:(NSString*)titleText;
+- (void)addPreviousNextRightOnKeyboardWithTarget:(nullable id)target rightButtonTitle:(nullable NSString*)rightButtonTitle previousAction:(nullable SEL)previousAction nextAction:(nullable SEL)nextAction rightButtonAction:(nullable SEL)rightButtonAction titleText:(nullable NSString*)titleText;
 
 /**
- Helper function to add SegmentedNextPrevious/ArrowNextPrevious and Right button on keyboard.
+ Helper function to add ArrowNextPrevious and Right button on keyboard.
  
  @param target Target object for selector.
  @param rightButtonTitle Title for rightBarButtonItem, usually 'Done'.
@@ -293,7 +336,32 @@
  @param rightButtonAction RightBarButton action name. Usually 'doneAction:(IQBarButtonItem*)item'.
  @param shouldShowPlaceholder A boolean to indicate whether to show textField placeholder on IQToolbar'.
  */
-- (void)addPreviousNextRightOnKeyboardWithTarget:(id)target rightButtonTitle:(NSString*)rightButtonTitle previousAction:(SEL)previousAction nextAction:(SEL)nextAction rightButtonAction:(SEL)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addPreviousNextRightOnKeyboardWithTarget:(nullable id)target rightButtonTitle:(nullable NSString*)rightButtonTitle previousAction:(nullable SEL)previousAction nextAction:(nullable SEL)nextAction rightButtonAction:(nullable SEL)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+
+/**
+ Helper function to add ArrowNextPrevious and Right button on keyboard.
+ 
+ @param target Target object for selector.
+ @param rightButtonImage Image icon to use as rightBarButtonItem.
+ @param previousAction Previous button action name. Usually 'previousAction:(id)item'.
+ @param nextAction Next button action name. Usually 'nextAction:(id)item'.
+ @param rightButtonAction RightBarButton action name. Usually 'doneAction:(IQBarButtonItem*)item'.
+ @param titleText text to show as title in IQToolbar'.
+ */
+- (void)addPreviousNextRightOnKeyboardWithTarget:(nullable id)target rightButtonImage:(nullable UIImage*)rightButtonImage previousAction:(nullable SEL)previousAction nextAction:(nullable SEL)nextAction rightButtonAction:(nullable SEL)rightButtonAction titleText:(nullable NSString*)titleText;
+
+/**
+ Helper function to add ArrowNextPrevious and Right button on keyboard.
+ 
+ @param target Target object for selector.
+ @param rightButtonImage Image icon to use as rightBarButtonItem.
+ @param previousAction Previous button action name. Usually 'previousAction:(id)item'.
+ @param nextAction Next button action name. Usually 'nextAction:(id)item'.
+ @param rightButtonAction RightBarButton action name. Usually 'doneAction:(IQBarButtonItem*)item'.
+ @param shouldShowPlaceholder A boolean to indicate whether to show textField placeholder on IQToolbar'.
+ */
+- (void)addPreviousNextRightOnKeyboardWithTarget:(nullable id)target rightButtonImage:(nullable UIImage*)rightButtonImage previousAction:(nullable SEL)previousAction nextAction:(nullable SEL)nextAction rightButtonAction:(nullable SEL)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+
 
 ///-----------------------------------
 /// @name Enable/Disable Previous/Next

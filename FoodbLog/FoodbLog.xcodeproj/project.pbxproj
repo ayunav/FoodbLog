@@ -31,6 +31,7 @@
 		7FB90DE929DD5E6600A50433 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DE829DD5E6600A50433 /* AppDelegate.swift */; };
 		7FB90DEB29DD630F00A50433 /* ParseDBAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DEA29DD630F00A50433 /* ParseDBAppDelegate.swift */; };
 		7FB90DED29DD635600A50433 /* ChemeleonAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DEC29DD635600A50433 /* ChemeleonAppDelegate.swift */; };
+		7FB90DF129DD668400A50433 /* RootTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DF029DD668400A50433 /* RootTabBarVC.swift */; };
 		98DA133F1216497FA2A9B319 /* (null) in Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Weak, ); }; };
 		C3B336E8EF6CFBF4BDE8E605 /* Pods_FoodbLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFC92113A3941C665760DE31 /* Pods_FoodbLog.framework */; };
 /* End PBXBuildFile section */
@@ -99,6 +100,7 @@
 		7FB90DE829DD5E6600A50433 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FB90DEA29DD630F00A50433 /* ParseDBAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseDBAppDelegate.swift; sourceTree = "<group>"; };
 		7FB90DEC29DD635600A50433 /* ChemeleonAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChemeleonAppDelegate.swift; sourceTree = "<group>"; };
+		7FB90DF029DD668400A50433 /* RootTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarVC.swift; sourceTree = "<group>"; };
 		AFC92113A3941C665760DE31 /* Pods_FoodbLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodbLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF5CA5CCBE07821CE7C4EE2 /* Pods-FoodbLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodbLog.release.xcconfig"; path = "Target Support Files/Pods-FoodbLog/Pods-FoodbLog.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -287,6 +289,7 @@
 				50967FD01BD5E36F0029D6AB /* Launch Screen.storyboard */,
 				29E25D591BCAB8480015A16F /* Info.plist */,
 				29E25D481BCAB8480015A16F /* Supporting Files */,
+				7FB90DF029DD668400A50433 /* RootTabBarVC.swift */,
 			);
 			path = FoodbLog;
 			sourceTree = SOURCE_ROOT;
@@ -534,6 +537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FB90DF129DD668400A50433 /* RootTabBarVC.swift in Sources */,
 				7FB90DEB29DD630F00A50433 /* ParseDBAppDelegate.swift in Sources */,
 				50F7C6781BCAF72B00A969D1 /* InstagramImagePickerCustomCell.m in Sources */,
 				50D767B21BCC785000C82B8B /* FoodbLogCollectionViewController.m in Sources */,
