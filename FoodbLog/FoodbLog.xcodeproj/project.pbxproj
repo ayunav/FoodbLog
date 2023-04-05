@@ -9,15 +9,13 @@
 /* Begin PBXBuildFile section */
 		298471A01BD406A8006282CC /* FoodLogDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2984719F1BD406A8006282CC /* FoodLogDetailViewController.m */; };
 		298471A31BD4097A006282CC /* FoodFeedDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 298471A21BD4097A006282CC /* FoodFeedDetailViewController.m */; };
-		29E25D4A1BCAB8480015A16F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E25D491BCAB8480015A16F /* main.m */; };
-		29E25D4D1BCAB8480015A16F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E25D4C1BCAB8480015A16F /* AppDelegate.m */; };
 		29E25D531BCAB8480015A16F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29E25D511BCAB8480015A16F /* Main.storyboard */; };
 		29E25D551BCAB8480015A16F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29E25D541BCAB8480015A16F /* Assets.xcassets */; };
 		29E25D631BCAB8490015A16F /* FoodbLogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E25D621BCAB8490015A16F /* FoodbLogTests.m */; };
 		29E25D6E1BCAB8490015A16F /* FoodbLogUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E25D6D1BCAB8490015A16F /* FoodbLogUITests.m */; };
 		29E25D801BCAC9D50015A16F /* CreateLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E25D7F1BCAC9D50015A16F /* CreateLogViewController.m */; };
 		29F703611BCB923F009B7A82 /* FoodbLogCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F703601BCB923F009B7A82 /* FoodbLogCustomCell.m */; };
-		29F703A31BD08C5C009B7A82 /* FoodbLogObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F703A21BD08C5C009B7A82 /* FoodbLogObject.m */; };
+		29F703A31BD08C5C009B7A82 /* FoodLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F703A21BD08C5C009B7A82 /* FoodLog.m */; };
 		507F55891BD965B10059C2B3 /* RecipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 507F55881BD965B10059C2B3 /* RecipeTableViewCell.m */; };
 		50967FC71BD5C8F40029D6AB /* SignPainter-HouseScript.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50967FC61BD5C8F40029D6AB /* SignPainter-HouseScript.ttf */; };
 		50967FD11BD5E36F0029D6AB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50967FD01BD5E36F0029D6AB /* Launch Screen.storyboard */; };
@@ -30,7 +28,10 @@
 		50F7C67E1BCB08BA00A969D1 /* FoodFeedCustomCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F7C67D1BCB08BA00A969D1 /* FoodFeedCustomCVC.m */; };
 		5D2957241BD3F8FE0029FD65 /* FoodFeedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D2957231BD3F8FE0029FD65 /* FoodFeedObject.m */; };
 		5DAB1BE71BCDD7480088D08D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAB1BE61BCDD7480088D08D /* CoreLocation.framework */; };
-		98DA133F1216497FA2A9B319 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Weak, ); }; };
+		7FB90DE929DD5E6600A50433 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DE829DD5E6600A50433 /* AppDelegate.swift */; };
+		7FB90DEB29DD630F00A50433 /* ParseDBAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DEA29DD630F00A50433 /* ParseDBAppDelegate.swift */; };
+		7FB90DED29DD635600A50433 /* ChemeleonAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DEC29DD635600A50433 /* ChemeleonAppDelegate.swift */; };
+		98DA133F1216497FA2A9B319 /* (null) in Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Weak, ); }; };
 		C3B336E8EF6CFBF4BDE8E605 /* Pods_FoodbLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFC92113A3941C665760DE31 /* Pods_FoodbLog.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,9 +58,6 @@
 		298471A11BD4097A006282CC /* FoodFeedDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodFeedDetailViewController.h; sourceTree = "<group>"; };
 		298471A21BD4097A006282CC /* FoodFeedDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodFeedDetailViewController.m; sourceTree = "<group>"; };
 		29E25D451BCAB8480015A16F /* FoodbLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodbLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		29E25D491BCAB8480015A16F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29E25D4B1BCAB8480015A16F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		29E25D4C1BCAB8480015A16F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		29E25D521BCAB8480015A16F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		29E25D541BCAB8480015A16F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29E25D591BCAB8480015A16F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,8 +71,8 @@
 		29E25D7F1BCAC9D50015A16F /* CreateLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateLogViewController.m; sourceTree = "<group>"; };
 		29F7035F1BCB923F009B7A82 /* FoodbLogCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodbLogCustomCell.h; sourceTree = "<group>"; };
 		29F703601BCB923F009B7A82 /* FoodbLogCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodbLogCustomCell.m; sourceTree = "<group>"; };
-		29F703A11BD08C5C009B7A82 /* FoodbLogObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodbLogObject.h; sourceTree = "<group>"; };
-		29F703A21BD08C5C009B7A82 /* FoodbLogObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodbLogObject.m; sourceTree = "<group>"; };
+		29F703A11BD08C5C009B7A82 /* FoodLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodLog.h; sourceTree = "<group>"; };
+		29F703A21BD08C5C009B7A82 /* FoodLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodLog.m; sourceTree = "<group>"; };
 		507F55871BD965B10059C2B3 /* RecipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeTableViewCell.h; sourceTree = "<group>"; };
 		507F55881BD965B10059C2B3 /* RecipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeTableViewCell.m; sourceTree = "<group>"; };
 		50967FC61BD5C8F40029D6AB /* SignPainter-HouseScript.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SignPainter-HouseScript.ttf"; sourceTree = "<group>"; };
@@ -97,6 +95,10 @@
 		5D2957231BD3F8FE0029FD65 /* FoodFeedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodFeedObject.m; sourceTree = "<group>"; };
 		5DAB1BE61BCDD7480088D08D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		69A81EF376647BA708026D38 /* Pods-FoodbLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodbLog.debug.xcconfig"; path = "Target Support Files/Pods-FoodbLog/Pods-FoodbLog.debug.xcconfig"; sourceTree = "<group>"; };
+		7FB90DE729DD5E6500A50433 /* FoodbLog-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FoodbLog-Bridging-Header.h"; sourceTree = "<group>"; };
+		7FB90DE829DD5E6600A50433 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7FB90DEA29DD630F00A50433 /* ParseDBAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseDBAppDelegate.swift; sourceTree = "<group>"; };
+		7FB90DEC29DD635600A50433 /* ChemeleonAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChemeleonAppDelegate.swift; sourceTree = "<group>"; };
 		AFC92113A3941C665760DE31 /* Pods_FoodbLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodbLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF5CA5CCBE07821CE7C4EE2 /* Pods-FoodbLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodbLog.release.xcconfig"; path = "Target Support Files/Pods-FoodbLog/Pods-FoodbLog.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,7 +109,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DAB1BE71BCDD7480088D08D /* CoreLocation.framework in Frameworks */,
-				98DA133F1216497FA2A9B319 /* BuildFile in Frameworks */,
+				98DA133F1216497FA2A9B319 /* (null) in Frameworks */,
 				C3B336E8EF6CFBF4BDE8E605 /* Pods_FoodbLog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,8 +143,8 @@
 		294C32BC1C93182200795520 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				29F703A11BD08C5C009B7A82 /* FoodbLogObject.h */,
-				29F703A21BD08C5C009B7A82 /* FoodbLogObject.m */,
+				29F703A11BD08C5C009B7A82 /* FoodLog.h */,
+				29F703A21BD08C5C009B7A82 /* FoodLog.m */,
 				5D2957221BD3F8FE0029FD65 /* FoodFeedObject.h */,
 				5D2957231BD3F8FE0029FD65 /* FoodFeedObject.m */,
 			);
@@ -275,9 +277,9 @@
 		29E25D471BCAB8480015A16F /* FoodbLog */ = {
 			isa = PBXGroup;
 			children = (
+				7FB90DE829DD5E6600A50433 /* AppDelegate.swift */,
+				7FB90DE729DD5E6500A50433 /* FoodbLog-Bridging-Header.h */,
 				29E25D511BCAB8480015A16F /* Main.storyboard */,
-				29E25D4B1BCAB8480015A16F /* AppDelegate.h */,
-				29E25D4C1BCAB8480015A16F /* AppDelegate.m */,
 				294C32BC1C93182200795520 /* Model */,
 				294C32BD1C93183F00795520 /* Views */,
 				294C32BB1C93181400795520 /* Controllers */,
@@ -293,7 +295,8 @@
 			isa = PBXGroup;
 			children = (
 				50967FC61BD5C8F40029D6AB /* SignPainter-HouseScript.ttf */,
-				29E25D491BCAB8480015A16F /* main.m */,
+				7FB90DEA29DD630F00A50433 /* ParseDBAppDelegate.swift */,
+				7FB90DEC29DD635600A50433 /* ChemeleonAppDelegate.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -322,7 +325,6 @@
 				69A81EF376647BA708026D38 /* Pods-FoodbLog.debug.xcconfig */,
 				FCF5CA5CCBE07821CE7C4EE2 /* Pods-FoodbLog.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -405,6 +407,7 @@
 					29E25D441BCAB8480015A16F = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = N48NM3R37Q;
+						LastSwiftMigration = 1420;
 					};
 					29E25D5D1BCAB8480015A16F = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -423,6 +426,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -530,22 +534,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FB90DEB29DD630F00A50433 /* ParseDBAppDelegate.swift in Sources */,
 				50F7C6781BCAF72B00A969D1 /* InstagramImagePickerCustomCell.m in Sources */,
 				50D767B21BCC785000C82B8B /* FoodbLogCollectionViewController.m in Sources */,
 				50EC0D181BD0545C0045B513 /* RestaurantPickerTableViewController.m in Sources */,
 				50A3C2C41BCAE4AD0077F79B /* InstagramImagePicker.m in Sources */,
+				7FB90DED29DD635600A50433 /* ChemeleonAppDelegate.swift in Sources */,
 				5D2957241BD3F8FE0029FD65 /* FoodFeedObject.m in Sources */,
 				50967FD41BD6F6930029D6AB /* RecipeTableViewController.m in Sources */,
-				29F703A31BD08C5C009B7A82 /* FoodbLogObject.m in Sources */,
+				29F703A31BD08C5C009B7A82 /* FoodLog.m in Sources */,
 				29F703611BCB923F009B7A82 /* FoodbLogCustomCell.m in Sources */,
 				507F55891BD965B10059C2B3 /* RecipeTableViewCell.m in Sources */,
 				298471A31BD4097A006282CC /* FoodFeedDetailViewController.m in Sources */,
-				29E25D4D1BCAB8480015A16F /* AppDelegate.m in Sources */,
 				50D767B81BCC895900C82B8B /* FoodFeedViewController.m in Sources */,
 				298471A01BD406A8006282CC /* FoodLogDetailViewController.m in Sources */,
 				50F7C67E1BCB08BA00A969D1 /* FoodFeedCustomCVC.m in Sources */,
 				29E25D801BCAC9D50015A16F /* CreateLogViewController.m in Sources */,
-				29E25D4A1BCAB8480015A16F /* main.m in Sources */,
+				7FB90DE929DD5E6600A50433 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,6 +683,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FoodbLog/Info.plist;
@@ -685,6 +691,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ayunavogel.FoodbLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "FoodbLog/FoodbLog-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -694,6 +703,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FoodbLog/Info.plist;
@@ -701,12 +711,15 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ayunavogel.FoodbLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "FoodbLog/FoodbLog-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 		29E25D761BCAB8490015A16F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = FoodbLogTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -719,6 +732,7 @@
 		29E25D771BCAB8490015A16F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = FoodbLogTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -731,6 +745,7 @@
 		29E25D791BCAB8490015A16F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = FoodbLogUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ayunavogel.FoodbLogUITests;
@@ -743,6 +758,7 @@
 		29E25D7A1BCAB8490015A16F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = FoodbLogUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ayunavogel.FoodbLogUITests;

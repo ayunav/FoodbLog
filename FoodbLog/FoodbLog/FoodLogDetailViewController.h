@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "FoodbLogObject.h"
+#import "FoodLog.h"
 
 @interface FoodLogDetailViewController : UIViewController
 

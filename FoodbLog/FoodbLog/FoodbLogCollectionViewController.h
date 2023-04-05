@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "FoodbLogObject.h"
+#import "FoodLog.h"
 #import "FoodbLogCustomCell.h"
 
 @interface FoodbLogCollectionViewController : UICollectionViewController

@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <ChameleonFramework/Chameleon.h>
 
-#import "FoodbLogObject.h"
+#import "FoodLog.h"
 #import "FoodbLogCollectionViewController.h"
 #import "FoodbLogCustomCell.h"
 #import "FoodLogDetailViewController.h"

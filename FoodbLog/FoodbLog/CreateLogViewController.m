@@ -14,7 +14,7 @@
 #import <UIKit/UIKit.h>
 #import <ChameleonFramework/Chameleon.h>
 
-#import "FoodbLogObject.h"
+#import "FoodLog.h"
 #import "FoodFeedObject.h"
 #import "CreateLogViewController.h"
 #import "InstagramImagePicker.h"

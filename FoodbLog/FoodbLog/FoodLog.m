@@ -8,7 +8,7 @@
 
 #import <Parse/PFObject+Subclass.h>
 
-#import "FoodbLogObject.h"
+#import "FoodLog.h"
 
 // setting up Parse database for FoodLog object
 
