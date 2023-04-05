@@ -33,6 +33,8 @@
 	<string>The app need to access your location to search for restaurant</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>The app need to access your location to search for restaurant</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The app need to access your album to select photo image</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SignPainter-HouseScript.ttf</string>

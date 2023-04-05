@@ -13,23 +13,23 @@
             <objects>
                 <viewController storyboardIdentifier="FoodLogDetailVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jsb-ww-IDP" customClass="FoodLogDetailVC" customModule="FoodbLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C4Z-ip-jVV">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEl-OE-ZPR">
-                                <rect key="frame" x="30" y="363" width="333" height="420"/>
+                                <rect key="frame" x="30" y="363" width="333" height="455"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A81-1R-twc">
-                                <rect key="frame" x="322.66666666666669" y="227" width="65.333333333333314" height="20.333333333333343"/>
+                                <rect key="frame" x="322.66666666666669" y="286" width="65.333333333333314" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bpb-aJ-F8u">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="225"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="225"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gIJ-DC-VfO">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="225"/>
@@ -98,7 +98,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cjD-ds-XJO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1501.5267175572519" y="-1511.267605633803"/>
+            <point key="canvasLocation" x="1440" y="-1364"/>
         </scene>
         <!--Food Logs Collection VC-->
         <scene sceneID="Won-OC-9GV">
@@ -139,7 +139,6 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="foodbLogImage" destination="LL9-TZ-IJK" id="nOm-wn-h5Q"/>
-                                    <segue destination="Jsb-ww-IDP" kind="show" identifier="FoodLogDetailVCSegueIdentifier" id="951-2R-381"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -389,7 +388,7 @@
         <!--CreateLog VC-->
         <scene sceneID="i5p-o3-1zc">
             <objects>
-                <viewController id="WBo-t4-PnB" userLabel="CreateLog VC" customClass="CreateLogViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateLogVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WBo-t4-PnB" userLabel="CreateLog VC" customClass="CreateLogVC" customModule="FoodbLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zCx-ga-EMq">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -428,14 +427,14 @@
                                 <rect key="frame" x="24" y="203" width="32" height="32"/>
                                 <state key="normal" image="cameraIcon"/>
                                 <connections>
-                                    <action selector="snapAPhotoButtonTapped:" destination="WBo-t4-PnB" eventType="touchUpInside" id="tDI-jk-6xd"/>
+                                    <action selector="snapAPhotoButtonTapped:" destination="WBo-t4-PnB" eventType="touchUpInside" id="ThB-WR-MGD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a2K-lM-gcm" userLabel="Search a pic button">
                                 <rect key="frame" x="337" y="203" width="32" height="32"/>
                                 <state key="normal" image="Instagram"/>
                                 <connections>
-                                    <action selector="searchAPicOnInstagramButtonTapped:" destination="WBo-t4-PnB" eventType="touchUpInside" id="kJS-3f-brI"/>
+                                    <action selector="searcAPicOnIntagramButtonTapped:" destination="WBo-t4-PnB" eventType="touchUpInside" id="mVX-fK-9AE"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search For Recipe" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xgl-b7-A96">
@@ -522,13 +521,13 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="foodExperienceTextView" destination="S4o-H3-64W" id="58E-ge-zkK"/>
-                        <outlet property="foodLogImageView" destination="axR-oS-lFg" id="nZW-6A-VGJ"/>
-                        <outlet property="foodLogTitleTextField" destination="O70-xC-XVh" id="R86-iO-Kfg"/>
-                        <outlet property="recipeSearchTextField" destination="Xgl-b7-A96" id="hg6-AP-vQd"/>
-                        <outlet property="restaurantSearchTextField" destination="j5v-l0-noz" id="kxg-Mm-EoT"/>
-                        <outlet property="searchAPicButton" destination="a2K-lM-gcm" id="qew-4V-rvr"/>
-                        <outlet property="snapAPhotoButton" destination="Ro1-YH-qQS" id="mWT-NC-KPO"/>
+                        <outlet property="foodExperienceTextView" destination="S4o-H3-64W" id="ZO2-PL-1oF"/>
+                        <outlet property="foodLogImageView" destination="axR-oS-lFg" id="3lx-VE-JLc"/>
+                        <outlet property="foodLogTitleTextField" destination="O70-xC-XVh" id="OlJ-QU-yn1"/>
+                        <outlet property="recipeSearchTextField" destination="Xgl-b7-A96" id="gzR-hg-pgc"/>
+                        <outlet property="restaurantSearchTextField" destination="j5v-l0-noz" id="Zz8-6p-b6d"/>
+                        <outlet property="searchAPicButton" destination="a2K-lM-gcm" id="dl8-JS-UiP"/>
+                        <outlet property="snapAPhotoButton" destination="Ro1-YH-qQS" id="be1-4Z-mUv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sXL-UE-TNj" userLabel="First Responder" sceneMemberID="firstResponder"/>

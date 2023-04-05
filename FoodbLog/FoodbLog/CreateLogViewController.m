@@ -42,14 +42,14 @@ RecipeTableViewDelegate
 @property (weak, nonatomic) IBOutlet UIButton *snapAPhotoButton;
 @property (weak, nonatomic) IBOutlet UIButton *searchAPicButton;
 @property (weak, nonatomic) IBOutlet UIImageView *foodLogImageView;
-@property (strong, nonatomic) UIImage *foodLogImage;
+
 
 @property (nonatomic) IBOutlet UITextField *restaurantSearchTextField;
 @property (weak, nonatomic) IBOutlet UITextField *recipeSearchTextField;
-@property (nonatomic) NSString *recipeIngredientsToSave;
-
 @property (weak, nonatomic) IBOutlet UITextView *foodExperienceTextView;
 
+@property (strong, nonatomic) UIImage *foodLogImage;
+@property (nonatomic) NSString *recipeIngredientsToSave;
 @property (nonatomic) UIImagePickerController *imagePickerController;
 @property (copy, nonatomic) NSString *lastChosenMediaType;
 - (BOOL)shouldPresentPhotoCaptureController;
@@ -223,7 +223,7 @@ RecipeTableViewDelegate
     
     NSString *formattedInputString = [string stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     
-    NSString *URLString = [NSString stringWithFormat:@"http://food2fork.com/api/search?key=54f7d87124b73e5b6ea3a30f7ec3eb54&q=%@", formattedInputString];
+    NSString *URLString = [NSString stringWithFormat:@"https://forkify-api.herokuapp.com/api/get?rId=%@", formattedInputString];
     
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc]init];
     
@@ -476,38 +476,6 @@ RecipeTableViewDelegate
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-
-#pragma mark - Save Image Data to Parse
-
-- (void)saveImageDataToParseRemoteDatabase {
-
-    UIImage *imageToBeSavedOnParse = self.foodLogImageView.image;
-
-    // Convert to JPEG with 50% quality
-    NSData* data = UIImageJPEGRepresentation(imageToBeSavedOnParse, 0.5f);
-    PFFile *imageFileToBeSavedOnParse = [PFFile fileWithName:@"Image.jpg" data:data];
-
-    // Save the image to Parse
-
-    [imageFileToBeSavedOnParse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            // The image has now been uploaded to Parse. Associate it with a new object.
-            FoodLog *foodLog = [[FoodLog alloc] init];
-            foodLog.image = imageFileToBeSavedOnParse;
-
-            [foodLog saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (!error) {
-                    NSLog(@"Saved");
-                }
-                else{
-                    // Error
-                    NSLog(@"Error: %@ %@", error, [error userInfo]);
-                }
-            }];
-        }
-    }];
 }
 
 

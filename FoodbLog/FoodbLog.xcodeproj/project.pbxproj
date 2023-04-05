@@ -27,6 +27,7 @@
 		5D2957241BD3F8FE0029FD65 /* FoodFeedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D2957231BD3F8FE0029FD65 /* FoodFeedObject.m */; };
 		5DAB1BE71BCDD7480088D08D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAB1BE61BCDD7480088D08D /* CoreLocation.framework */; };
 		7F8CC93C29DDAC540050C281 /* FoodLogDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC93B29DDAC540050C281 /* FoodLogDetailVC.swift */; };
+		7F8CC93E29DDB3200050C281 /* CreateLogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC93D29DDB3200050C281 /* CreateLogVC.swift */; };
 		7FB90DE929DD5E6600A50433 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DE829DD5E6600A50433 /* AppDelegate.swift */; };
 		7FB90DEB29DD630F00A50433 /* ParseDBAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DEA29DD630F00A50433 /* ParseDBAppDelegate.swift */; };
 		7FB90DED29DD635600A50433 /* ChemeleonAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DEC29DD635600A50433 /* ChemeleonAppDelegate.swift */; };
@@ -93,6 +94,7 @@
 		5DAB1BE61BCDD7480088D08D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		69A81EF376647BA708026D38 /* Pods-FoodbLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodbLog.debug.xcconfig"; path = "Target Support Files/Pods-FoodbLog/Pods-FoodbLog.debug.xcconfig"; sourceTree = "<group>"; };
 		7F8CC93B29DDAC540050C281 /* FoodLogDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLogDetailVC.swift; sourceTree = "<group>"; };
+		7F8CC93D29DDB3200050C281 /* CreateLogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLogVC.swift; sourceTree = "<group>"; };
 		7FB90DE729DD5E6500A50433 /* FoodbLog-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FoodbLog-Bridging-Header.h"; sourceTree = "<group>"; };
 		7FB90DE829DD5E6600A50433 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FB90DEA29DD630F00A50433 /* ParseDBAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseDBAppDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 		294C32C11C948A0800795520 /* CreateLog View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7F8CC93D29DDB3200050C281 /* CreateLogVC.swift */,
 				29E25D7E1BCAC9D50015A16F /* CreateLogViewController.h */,
 				29E25D7F1BCAC9D50015A16F /* CreateLogViewController.m */,
 				294C32C51C95DD6700795520 /* Pick Image From Instagram */,
@@ -537,6 +540,7 @@
 				7FB90DEB29DD630F00A50433 /* ParseDBAppDelegate.swift in Sources */,
 				50F7C6781BCAF72B00A969D1 /* InstagramImagePickerCustomCell.m in Sources */,
 				7FB90DF329DD756000A50433 /* FoodLogCollectionViewVC.swift in Sources */,
+				7F8CC93E29DDB3200050C281 /* CreateLogVC.swift in Sources */,
 				50EC0D181BD0545C0045B513 /* RestaurantPickerTableViewController.m in Sources */,
 				50A3C2C41BCAE4AD0077F79B /* InstagramImagePicker.m in Sources */,
 				7F8CC93C29DDAC540050C281 /* FoodLogDetailVC.swift in Sources */,
