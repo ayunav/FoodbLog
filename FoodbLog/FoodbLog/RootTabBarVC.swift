@@ -25,10 +25,10 @@ final class RootTabBarVC: UITabBarController {
 
 private extension RootTabBarVC {
     func firstTabBar() -> UIViewController {
-        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "\(FoodbLogCollectionViewController.self)") as! FoodbLogCollectionViewController
-
+        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "\(FoodLogCollectionViewVC.self)") as! FoodLogCollectionViewVC
         
-       return createNavigationController(for: vc, title: "Food bLog", image: UIImage(named: "Literature Filled-25"))
+        
+        return createNavigationController(for: vc, title: "Food bLog", image: UIImage(named: "Literature Filled-25"))
     }
     
     func secondTabBar() -> UIViewController {

@@ -10,7 +10,7 @@
         <!--Food Log Detail View Controller-->
         <scene sceneID="kpe-fw-VRg">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="Jsb-ww-IDP" customClass="FoodLogDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FoodLogDetailViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jsb-ww-IDP" customClass="FoodLogDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Alx-8S-ud3"/>
                         <viewControllerLayoutGuide type="bottom" id="feP-jq-AZk"/>
@@ -111,7 +111,7 @@
         <!--Food Logs Collection VC-->
         <scene sceneID="Won-OC-9GV">
             <objects>
-                <collectionViewController storyboardIdentifier="FoodbLogCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ej6-zJ-2Ib" userLabel="Food Logs Collection VC" customClass="FoodbLogCollectionViewController" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="FoodLogCollectionViewVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ej6-zJ-2Ib" userLabel="Food Logs Collection VC" customClass="FoodLogCollectionViewVC" customModule="FoodbLog" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="pCR-CD-WKv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
