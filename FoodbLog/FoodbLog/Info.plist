@@ -27,10 +27,12 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>The app need to access your location to search for restaurant</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>App use Locations service mode Always</string>
+	<string>The app need to access your location to search for restaurant</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>The app need to access your location to search for restaurant</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SignPainter-HouseScript.ttf</string>
