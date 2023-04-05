@@ -31,6 +31,7 @@
 		7F8CC96329DDF2210050C281 /* FoodbLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC96229DDF2210050C281 /* FoodbLogTests.swift */; };
 		7F8CC96A29DDF23E0050C281 /* FoodLogServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC96929DDF23E0050C281 /* FoodLogServiceTests.swift */; };
 		7F8CC96C29DDF2D10050C281 /* URLSessionContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC96B29DDF2D10050C281 /* URLSessionContract.swift */; };
+		7F8CC96E29DDF3630050C281 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC96D29DDF3630050C281 /* MockURLSession.swift */; };
 		7FB90DE929DD5E6600A50433 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DE829DD5E6600A50433 /* AppDelegate.swift */; };
 		7FB90DEB29DD630F00A50433 /* ParseDBAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DEA29DD630F00A50433 /* ParseDBAppDelegate.swift */; };
 		7FB90DED29DD635600A50433 /* ChemeleonAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DEC29DD635600A50433 /* ChemeleonAppDelegate.swift */; };
@@ -100,6 +101,7 @@
 		7F8CC96229DDF2210050C281 /* FoodbLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodbLogTests.swift; sourceTree = "<group>"; };
 		7F8CC96929DDF23E0050C281 /* FoodLogServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLogServiceTests.swift; sourceTree = "<group>"; };
 		7F8CC96B29DDF2D10050C281 /* URLSessionContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionContract.swift; sourceTree = "<group>"; };
+		7F8CC96D29DDF3630050C281 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		7FB90DE729DD5E6500A50433 /* FoodbLog-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FoodbLog-Bridging-Header.h"; sourceTree = "<group>"; };
 		7FB90DE829DD5E6600A50433 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FB90DEA29DD630F00A50433 /* ParseDBAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseDBAppDelegate.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 			children = (
 				7F8CC96229DDF2210050C281 /* FoodbLogTests.swift */,
 				7F8CC96929DDF23E0050C281 /* FoodLogServiceTests.swift */,
+				7F8CC96D29DDF3630050C281 /* MockURLSession.swift */,
 			);
 			path = FoodbLogTests;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F8CC96E29DDF3630050C281 /* MockURLSession.swift in Sources */,
 				7F8CC96A29DDF23E0050C281 /* FoodLogServiceTests.swift in Sources */,
 				7F8CC96329DDF2210050C281 /* FoodbLogTests.swift in Sources */,
 			);
