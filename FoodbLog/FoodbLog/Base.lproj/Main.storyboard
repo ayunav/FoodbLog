@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Food Log Detail View Controller-->
+        <!--Food Log DetailVC-->
         <scene sceneID="kpe-fw-VRg">
             <objects>
-                <viewController storyboardIdentifier="FoodLogDetailViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jsb-ww-IDP" customClass="FoodLogDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FoodLogDetailVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jsb-ww-IDP" customClass="FoodLogDetailVC" customModule="FoodbLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C4Z-ip-jVV">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -89,11 +89,11 @@
                     <navigationItem key="navigationItem" id="LnF-mS-ee5"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="dishNameLabel" destination="cEJ-kC-Bb2" id="p5X-RQ-3TO"/>
-                        <outlet property="foodLogDescription" destination="OEl-OE-ZPR" id="YMd-cJ-4cM"/>
-                        <outlet property="foodLogImageView" destination="gIJ-DC-VfO" id="caC-Ln-PXy"/>
-                        <outlet property="recipeButton" destination="2re-Ce-cZ5" id="VgQ-HN-bi5"/>
-                        <outlet property="restaurantNameLabel" destination="A81-1R-twc" id="pSl-Zq-lRb"/>
+                        <outlet property="dishNameLabel" destination="cEJ-kC-Bb2" id="eru-3j-VMA"/>
+                        <outlet property="foodLogDescription" destination="OEl-OE-ZPR" id="IT1-Pm-hQ1"/>
+                        <outlet property="foodLogImageView" destination="gIJ-DC-VfO" id="8nx-w4-DRW"/>
+                        <outlet property="recipeButton" destination="2re-Ce-cZ5" id="UFv-Jd-9kJ"/>
+                        <outlet property="restaurantNameLabel" destination="A81-1R-twc" id="j6o-kU-HdW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cjD-ds-XJO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -505,11 +505,11 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="CXs-Gk-fBS"/>
                                 <exclude reference="1gk-Ch-Hyl"/>
                                 <exclude reference="Y4C-Pj-16i"/>
                                 <exclude reference="lRQ-Tl-mp0"/>
                                 <exclude reference="rJS-44-Zk1"/>
+                                <exclude reference="CXs-Gk-fBS"/>
                                 <exclude reference="HSu-rc-MSG"/>
                                 <exclude reference="Obl-hP-YA7"/>
                                 <exclude reference="Rx3-JJ-pNK"/>

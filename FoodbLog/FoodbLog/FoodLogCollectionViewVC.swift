@@ -10,23 +10,17 @@ import UIKit
 import Parse
 
 final class FoodLogCollectionViewVC: UICollectionViewController {
-
+    
     var allFoodbLogObjects : [FoodLog] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        navigationItem.titleView = UIImageView(image: UIImage(named: "FoodbLog_White_Logo.png"))
-        
-        let horizontalPadding : CGFloat = 6.0
-        let numberOfItemPerRow : CGFloat = 3.0
-        let heightAdjustment : CGFloat = 30.0
-        let width = (collectionView.frame.width - horizontalPadding) / numberOfItemPerRow
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: width, height: width + heightAdjustment)
-        
-        collectionView.collectionViewLayout = layout
+        pullDataFromParse()
     }
 }
 
@@ -38,7 +32,7 @@ extension FoodLogCollectionViewVC {
         return allFoodbLogObjects.count
     }
     
-   override func collectionView(
+    override func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
@@ -57,8 +51,8 @@ extension FoodLogCollectionViewVC {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let log = allFoodbLogObjects[indexPath.row]
         
-        let foodDetailVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "FoodLogDetailViewController") as! FoodLogDetailViewController
-        foodDetailVC.foodbLogObject = log
+        let foodDetailVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "FoodLogDetailVC") as! FoodLogDetailVC
+        foodDetailVC.foodLogObject = log
         
         navigationController?.pushViewController(foodDetailVC, animated: true)
     }
@@ -68,6 +62,9 @@ extension FoodLogCollectionViewVC {
     func pullDataFromParse() {
         let query = PFQuery(className: "\(FoodLog.self)")
         query.findObjectsInBackground { objects, error in
+            if let error = error {
+                print("Error find objects from PFQuery : \(error.localizedDescription)")
+            }
             
             guard let pfObjects = objects, let foodObject = pfObjects as? [FoodLog] else {return}
             self.allFoodbLogObjects.append(contentsOf: foodObject)
@@ -76,5 +73,23 @@ extension FoodLogCollectionViewVC {
                 self.collectionView.reloadData()
             }
         }
+    }
+}
+
+
+private extension FoodLogCollectionViewVC {
+    func setupUI() {
+        
+        navigationItem.titleView = UIImageView(image: UIImage(named: "FoodbLog_White_Logo.png"))
+        
+        let horizontalPadding : CGFloat = 6.0
+        let numberOfItemPerRow : CGFloat = 3.0
+        let heightAdjustment : CGFloat = 30.0
+        let width = (collectionView.frame.width - horizontalPadding) / numberOfItemPerRow
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: width, height: width + heightAdjustment)
+        
+        collectionView.collectionViewLayout = layout
     }
 }

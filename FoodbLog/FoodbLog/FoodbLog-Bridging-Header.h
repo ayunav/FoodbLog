@@ -7,4 +7,3 @@
 #import "FoodbLogCustomCell.h"
 #import "FoodLog.h"
 #import "FoodLog.m"
-#import "FoodLogDetailViewController.h"
