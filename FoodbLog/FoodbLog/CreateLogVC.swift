@@ -25,9 +25,9 @@ final class CreateLogVC: UIViewController {
     var lastChosenMediaType : String?
     var shouldPresentPhotoCaptureController : Bool = false
     var locationManager : CLLocationManager = CLLocationManager()
-      
-    var userLocation : CLLocation?
+    var foodbLogInteractor = FoodbLogInteractorImpl()
     
+    var userLocation : CLLocation?
     
     var fileUploadBackgroundTaskID : UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 1)
     var photoPostBackgroundTaskID : UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 2)
@@ -204,56 +204,34 @@ extension CreateLogVC {
     // MARK:  Fousquare API Request method
     func requestRestaurantName(_ name : String) {
         let query = name
-        let latitude : Double = userLocation?.coordinate.latitude ?? 0.0
-        let longitute : Double = userLocation?.coordinate.longitude ?? 0.0
+        let latitude = "\(userLocation?.coordinate.latitude ?? 0.0)"
+        let longitute = "\( userLocation?.coordinate.longitude ?? 0.0)"
         
-        let urlString = "https://api.foursquare.com/v2/venues/search?client_id=VENOVOCEM4E1QVRTGNOCNO40V32YHQ4FMRD0M3K4WBMYQWPS&client_secret=QVM22AMEWXEZ54VBHMGOHYE2JNMMLTQYKOKOSAK0JTGDQBLT&v=20130815&ll=\(latitude),\(longitute)&query=\(query)&radius=2000"
-        
-        guard let url = URL(string: urlString) else {return}
-        
-        let header = [
-            "accept": "application/json",
-             "Authorization": "fsq330X+8o6/JsdNbbyzjYaEqXORJTZvanpmRWgb4MVsW8E="
-        ]
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "GET"
-        urlRequest.allHTTPHeaderFields = header
-        
-        let task = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
-            if let error = error {
-                print("Error to search restaurant name : \(error.localizedDescription)")
-                print("You are at \(latitude) & \(longitute)")
-            }
+        foodbLogInteractor.requestRestaurantName(query, latitude, longitute) { result in
             
-            guard let data = data else {return}
-            
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            do {
-                let restaurants = try decoder.decode(RestaurantResponse.self, from: data)
-                self.displaySearchResults(restaurants.results)
-                
-            } catch {
-                print("Error decode data : \(error.localizedDescription)")
+            switch result {
+            case .success(let data):
+                self.displaySearchResults(data.results)
+            case .failure(let error):
+                print("Failed fetch searched restaurant : \(error.localizedDescription)")
             }
         }
-        
-        task.resume()
     }
     
     func displaySearchResults(_ results : [Restaurant]) {
-        let restaurantPickerTVC = storyboard?.instantiateViewController(withIdentifier: "RestaurantPickerTableViewController") as! RestaurantPickerTableViewController
-        #warning("replace with restaurant object once this refactoringt complete")
-        restaurantPickerTVC.restaurantData = [[:]]
-        restaurantPickerTVC.delegate = self
-        
-        navigationController?.pushViewController(restaurantPickerTVC, animated: true)
+        DispatchQueue.main.async {
+            let restaurantPickerTVC = self.storyboard?.instantiateViewController(withIdentifier: "RestaurantPickerTableViewController") as! RestaurantPickerTableViewController
+    #warning("replace with restaurant object once this refactoringt complete")
+            restaurantPickerTVC.restaurantData = [[:]]
+            restaurantPickerTVC.delegate = self
+            
+            self.navigationController?.pushViewController(restaurantPickerTVC, animated: true)
+        }
+
     }
     
     // MARK:  Recipes API Request method
-    #warning("need to replace with other recipe api due the current API provider was shut down")
+#warning("need to replace with other recipe api due the current API provider was shut down")
     func recipeRequestForString(_ recipe : String) {
         let formattedInputString = recipe.replacingOccurrences(of: " ", with: "%20")
         
@@ -313,7 +291,7 @@ extension CreateLogVC {
             
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
-
+            
             do {
                 let recipes = try decoder.decode(TagResponse.self, from: data)
                 self.displayTagResults(recipes.data)
@@ -396,79 +374,8 @@ private extension CreateLogVC {
     
     @objc func saveButtonTapped(_ button : UIBarButtonItem) {
         saveDataToParse()
-     
+        
     }
-}
-
-//import Foundation
-//
-//let headers = [
-//  "accept": "application/json",
-//  "Authorization": "fsq330X+8o6/JsdNbbyzjYaEqXORJTZvanpmRWgb4MVsW8E="
-//]
-//
-//let request = NSMutableURLRequest(url: NSURL(string: "https://api.foursquare.com/v3/places/search?query=donut&ll=38.656555%2C-77.250441&radius=2000")! as URL,
-//                                        cachePolicy: .useProtocolCachePolicy,
-//                                    timeoutInterval: 10.0)
-//request.httpMethod = "GET"
-//request.allHTTPHeaderFields = headers
-//
-//let session = URLSession.shared
-//let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-//  if (error != nil) {
-//    print(error as Any)
-//  } else {
-//    let httpResponse = response as? HTTPURLResponse
-//    print(httpResponse)
-//  }
-//})
-
-// dataTask.resume()
-
-//{
-//  "results": [
-//    {
-//      "fsq_id": "4b61ab65f964a520881c2ae3",
-//      "categories": [
-//        {
-//          "id": 13001,
-//          "name": "Bagel Shop",
-//          "icon": {
-//            "prefix": "https://ss3.4sqi.net/img/categories_v2/food/bagels_",
-//            "suffix": ".png"
-//          }
-//        }
-//      ],
-//      "link": "/v3/places/4b61ab65f964a520881c2ae3",
-//      "location": {
-//        "address": "13607 Richmond Hwy",
-//        "census_block": "511539006021000",
-//        "country": "US",
-//        "cross_street": "",
-//        "dma": "Washington, Dc-Hagrstwn",
-//        "formatted_address": "13607 Richmond Hwy, Woodbridge, VA 22191",
-//        "locality": "Woodbridge",
-//        "postcode": "22191",
-//        "region": "VA"
-//      },
-//      "name": "Dunkin'",
-//      "related_places": {},
-//      "timezone": "America/New_York"
-//    }
-//  ],
-//}
-
-struct RestaurantResponse : Decodable {
-    let results : [Restaurant]
-}
-
-struct Restaurant : Decodable {
-    let name : String?
-    let location : RestaurantLocation?
-}
-
-struct RestaurantLocation : Decodable {
-    let formattedAddress : String
 }
 
 struct RecipeResponse : Decodable {

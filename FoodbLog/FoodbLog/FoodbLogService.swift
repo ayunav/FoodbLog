@@ -23,7 +23,7 @@ extension FoodbLogService : APIService {
     var endpoint : String {
         switch self {
         case .searchRestaurant(let query, let latitute, let longitude):
-            return createEndpoint("search?query=\(query)&ll=\(latitute)%2C\(longitude)&radius=30000")
+            return createEndpoint("search?v=\(query)&ll=\(latitute)%2C\(longitude)&radius=5000&categories=13000")
         }
     }
     

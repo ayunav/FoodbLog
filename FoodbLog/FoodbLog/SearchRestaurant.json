@@ -1,0 +1,45 @@
+{
+   "results":[
+      {
+         "fsq_id":"50b91cf3e4b07e5a14f8432a",
+         "categories":[
+            {
+               "id":13383,
+               "name":"Steakhouse",
+               "icon":{
+                  "prefix":"https://ss3.4sqi.net/img/categories_v2/food/steakhouse_",
+                  "suffix":".png"
+               }
+            }
+         ],
+         "chains":[],
+         "distance":395,
+         "geocodes":{
+            "main":{
+               "latitude":51.512179,
+               "longitude":-0.138367
+            },
+            "roof":{
+               "latitude":51.512179,
+               "longitude":-0.138367
+            }
+         },
+         "link":"/v3/places/50b91cf3e4b07e5a14f8432a",
+         "location":{
+            "address":"17 Beak St",
+            "admin_region":"England",
+            "country":"GB",
+            "formatted_address":"17 Beak St, London, Greater London, W1F 9RW",
+            "locality":"London",
+            "post_town":"London",
+            "postcode":"W1F 9RW",
+            "region":"Greater London"
+         },
+         "name":"Flat Iron",
+         "related_places":{
+            
+         },
+         "timezone":"Europe/London"
+      }
+   ]
+}
