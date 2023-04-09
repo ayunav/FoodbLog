@@ -25,13 +25,13 @@
 		50F7C67E1BCB08BA00A969D1 /* FoodFeedCustomCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F7C67D1BCB08BA00A969D1 /* FoodFeedCustomCVC.m */; };
 		5D2957241BD3F8FE0029FD65 /* FoodFeedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D2957231BD3F8FE0029FD65 /* FoodFeedObject.m */; };
 		5DAB1BE71BCDD7480088D08D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAB1BE61BCDD7480088D08D /* CoreLocation.framework */; };
+		7F6967B229E2B5E600A8A71B /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6967B129E2B5E600A8A71B /* HttpClient.swift */; };
 		7F8CC93C29DDAC540050C281 /* FoodLogDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC93B29DDAC540050C281 /* FoodLogDetailVC.swift */; };
 		7F8CC93E29DDB3200050C281 /* CreateLogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC93D29DDB3200050C281 /* CreateLogVC.swift */; };
-		7F8CC94129DDF1730050C281 /* FoodLogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC94029DDF1730050C281 /* FoodLogService.swift */; };
 		7F8CC96329DDF2210050C281 /* FoodbLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC96229DDF2210050C281 /* FoodbLogTests.swift */; };
-		7F8CC96A29DDF23E0050C281 /* FoodLogServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC96929DDF23E0050C281 /* FoodLogServiceTests.swift */; };
 		7F8CC96C29DDF2D10050C281 /* URLSessionContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC96B29DDF2D10050C281 /* URLSessionContract.swift */; };
 		7F8CC96E29DDF3630050C281 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC96D29DDF3630050C281 /* MockURLSession.swift */; };
+		7F8CC97029DDF91E0050C281 /* FoodLogServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC96F29DDF91E0050C281 /* FoodLogServiceTests.swift */; };
 		7FB90DE929DD5E6600A50433 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DE829DD5E6600A50433 /* AppDelegate.swift */; };
 		7FB90DEB29DD630F00A50433 /* ParseDBAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DEA29DD630F00A50433 /* ParseDBAppDelegate.swift */; };
 		7FB90DED29DD635600A50433 /* ChemeleonAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DEC29DD635600A50433 /* ChemeleonAppDelegate.swift */; };
@@ -94,14 +94,14 @@
 		5D2957231BD3F8FE0029FD65 /* FoodFeedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodFeedObject.m; sourceTree = "<group>"; };
 		5DAB1BE61BCDD7480088D08D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		69A81EF376647BA708026D38 /* Pods-FoodbLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodbLog.debug.xcconfig"; path = "Target Support Files/Pods-FoodbLog/Pods-FoodbLog.debug.xcconfig"; sourceTree = "<group>"; };
+		7F6967B129E2B5E600A8A71B /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		7F8CC93B29DDAC540050C281 /* FoodLogDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLogDetailVC.swift; sourceTree = "<group>"; };
 		7F8CC93D29DDB3200050C281 /* CreateLogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLogVC.swift; sourceTree = "<group>"; };
-		7F8CC94029DDF1730050C281 /* FoodLogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLogService.swift; sourceTree = "<group>"; };
 		7F8CC96029DDF2210050C281 /* FoodbLogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodbLogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F8CC96229DDF2210050C281 /* FoodbLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodbLogTests.swift; sourceTree = "<group>"; };
-		7F8CC96929DDF23E0050C281 /* FoodLogServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLogServiceTests.swift; sourceTree = "<group>"; };
 		7F8CC96B29DDF2D10050C281 /* URLSessionContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionContract.swift; sourceTree = "<group>"; };
 		7F8CC96D29DDF3630050C281 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		7F8CC96F29DDF91E0050C281 /* FoodLogServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLogServiceTests.swift; sourceTree = "<group>"; };
 		7FB90DE729DD5E6500A50433 /* FoodbLog-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FoodbLog-Bridging-Header.h"; sourceTree = "<group>"; };
 		7FB90DE829DD5E6600A50433 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FB90DEA29DD630F00A50433 /* ParseDBAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseDBAppDelegate.swift; sourceTree = "<group>"; };
@@ -332,8 +332,8 @@
 		7F8CC93F29DDF15D0050C281 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				7F8CC94029DDF1730050C281 /* FoodLogService.swift */,
 				7F8CC96B29DDF2D10050C281 /* URLSessionContract.swift */,
+				7F6967B129E2B5E600A8A71B /* HttpClient.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -342,8 +342,8 @@
 			isa = PBXGroup;
 			children = (
 				7F8CC96229DDF2210050C281 /* FoodbLogTests.swift */,
-				7F8CC96929DDF23E0050C281 /* FoodLogServiceTests.swift */,
 				7F8CC96D29DDF3630050C281 /* MockURLSession.swift */,
+				7F8CC96F29DDF91E0050C281 /* FoodLogServiceTests.swift */,
 			);
 			path = FoodbLogTests;
 			sourceTree = "<group>";
@@ -567,13 +567,13 @@
 				7F8CC93C29DDAC540050C281 /* FoodLogDetailVC.swift in Sources */,
 				7FB90DED29DD635600A50433 /* ChemeleonAppDelegate.swift in Sources */,
 				5D2957241BD3F8FE0029FD65 /* FoodFeedObject.m in Sources */,
-				7F8CC94129DDF1730050C281 /* FoodLogService.swift in Sources */,
 				50967FD41BD6F6930029D6AB /* RecipeTableViewController.m in Sources */,
 				29F703A31BD08C5C009B7A82 /* FoodLog.m in Sources */,
 				29F703611BCB923F009B7A82 /* FoodbLogCustomCell.m in Sources */,
 				507F55891BD965B10059C2B3 /* RecipeTableViewCell.m in Sources */,
 				298471A31BD4097A006282CC /* FoodFeedDetailViewController.m in Sources */,
 				50D767B81BCC895900C82B8B /* FoodFeedViewController.m in Sources */,
+				7F6967B229E2B5E600A8A71B /* HttpClient.swift in Sources */,
 				50F7C67E1BCB08BA00A969D1 /* FoodFeedCustomCVC.m in Sources */,
 				29E25D801BCAC9D50015A16F /* CreateLogViewController.m in Sources */,
 				7FB90DE929DD5E6600A50433 /* AppDelegate.swift in Sources */,
@@ -593,8 +593,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F8CC96E29DDF3630050C281 /* MockURLSession.swift in Sources */,
-				7F8CC96A29DDF23E0050C281 /* FoodLogServiceTests.swift in Sources */,
 				7F8CC96329DDF2210050C281 /* FoodbLogTests.swift in Sources */,
+				7F8CC97029DDF91E0050C281 /* FoodLogServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

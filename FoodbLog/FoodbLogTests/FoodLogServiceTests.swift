@@ -1,9 +1,9 @@
-//
-//  FoodLogServiceTests.swift
-//  FoodbLogTests
-//
-//  Created by Ikmal Azman on 05/04/2023.
-//  Copyright © 2023 Ayuna Vogel. All rights reserved.
-//
+@testable import FoodbLog
+import XCTest
 
-import Foundation
+final class FoodLogServiceTests: XCTestCase {
+
+    func test_zero() throws {
+        XCTFail("Tests not yet implemented in FoodLogServiceTests")
+    }
+}
