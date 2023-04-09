@@ -10,16 +10,21 @@ import Foundation
 import XCTest
 
 final class MockURLSession : URLSessionContract {
+
     var dataTaskCallCount = 0
     var capturedRequest : [URLRequest] = []
-    var capturedCompletionHandler : [(Data?, URLResponse?, Error?)->Void] = []
+    var data : Data?
+    var error : Error?
     
     func dataTask(with request: URLRequest, completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         dataTaskCallCount = dataTaskCallCount + 1
         capturedRequest.append(request)
-        capturedCompletionHandler.append(completionHandler)
+        let data = self.data
+        let error = self.error
         
-        return DummyURLSessionDataTask()
+        return DummyURLSessionDataTask {
+            completionHandler(data, nil, error)
+        }
     }
     
     /// Method to make sure the request made from client side similar with request send to handler
@@ -29,5 +34,15 @@ final class MockURLSession : URLSessionContract {
 }
 
 final class DummyURLSessionDataTask : URLSessionDataTask {
-    override func resume() {}
+    private let closure : ()-> Void
+    
+    init(_ closure : @escaping ()-> Void) {
+        self.closure = closure
+    }
+    
+    override func resume() {
+        closure()
+    }
 }
+
+
