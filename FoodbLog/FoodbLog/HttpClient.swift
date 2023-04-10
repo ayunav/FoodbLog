@@ -42,7 +42,10 @@ final class HttpClient {
                 completion(.failure(error))
             }
             
-            guard let data = data else {return}
+            guard let data = data else {
+                completion(.failure(NSError(domain: "Invalid Data", code: 1)))
+                return
+            }
             completion(.success(data))
         }
         task.resume()

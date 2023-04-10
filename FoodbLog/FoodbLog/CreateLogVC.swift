@@ -231,45 +231,28 @@ extension CreateLogVC {
     }
     
     // MARK:  Recipes API Request method
-#warning("need to replace with other recipe api due the current API provider was shut down")
     func recipeRequestForString(_ recipe : String) {
         let formattedInputString = recipe.replacingOccurrences(of: " ", with: "%20")
         
-        let urlString = "https://forkify-api.herokuapp.com/api/get?rId=%\(formattedInputString)"
-        
-        guard let url = URL(string: urlString) else {return}
-        
-        let urlRequest = URLRequest(url: url)
-        
-        let task = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
-            if let error = error {
-                print("Error to request recipe for \(recipe) : \(error.localizedDescription)")
-            }
-            
-            guard let data = data else {return}
-            
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            do {
-                let recipes = try decoder.decode(RecipeResponse.self, from: data)
-                self.displayRecipeResults(recipes.recipes)
-                
-            } catch {
-                print("Error decode data : \(error.localizedDescription)")
+        foodbLogInteractor.requestRecipes(formattedInputString) { result in
+            switch result {
+            case .success(let data):
+                self.displayRecipeResults(data.results)
+            case .failure(let failure):
+                print("Failure to fetch recipes : \(failure.localizedDescription)")
             }
         }
-        
-        task.resume()
     }
     
     func displayRecipeResults(_ recipes : [Recipe]) {
-        let recipeTVC = storyboard?.instantiateViewController(withIdentifier: "RecipeTableViewController") as! RecipeTableViewController
-#warning("replace with recipe object once this refactoringt complete")
-        recipeTVC.recipeResultsArray = []
-        recipeTVC.delegate = self
-        
-        self.navigationController?.pushViewController(recipeTVC, animated: true)
+        DispatchQueue.main.async {
+            let recipeTVC = self.storyboard?.instantiateViewController(withIdentifier: "RecipeTableViewController") as! RecipeTableViewController
+    #warning("replace with recipe object once this refactoringt complete")
+            recipeTVC.recipeResultsArray = []
+            recipeTVC.delegate = self
+            
+            self.navigationController?.pushViewController(recipeTVC, animated: true)
+        }
     }
     
     // MARK:  Instagram Image API Request method
@@ -377,17 +360,6 @@ private extension CreateLogVC {
         
     }
 }
-
-struct RecipeResponse : Decodable {
-    let recipes : [Recipe]
-}
-
-struct Recipe : Decodable {
-    let imageURL : String
-    let recipeID : String
-    let title : String
-}
-
 
 struct TagResponse : Decodable {
     let data : [Tag]

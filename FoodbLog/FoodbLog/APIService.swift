@@ -16,6 +16,7 @@ protocol APIService {
 
 enum APIProvider {
     case foursquare
+    case fork2forkCA
 }
 
 extension APIProvider {
@@ -23,6 +24,8 @@ extension APIProvider {
         switch self {
         case .foursquare:
             return "https://api.foursquare.com/v3/"
+        case .fork2forkCA :
+            return "https://food2fork.ca/api/recipe/"
         }
     }
 }

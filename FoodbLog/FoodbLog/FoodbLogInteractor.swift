@@ -41,4 +41,26 @@ final class FoodbLogInteractorImpl {
             }
         }
     }
+    
+    func requestRecipes(_ name : String, _ completion : @escaping (Result<RecipeResponse, Error>)->Void) {
+        guard let url = URL(string: FoodbLogService.searchRecipes(query: name).endpoint) else {
+            return
+        }
+        
+        let headers = [
+            "Authorization": "Token 9c8b06d329136da358c2d00e76946b0111ce2c48"
+        ]
+        
+        var request = URLRequest(url: url)
+        request.allHTTPHeaderFields = headers
+        client.performRequest(request, RecipeResponse.self) { result in
+            switch result {
+            case .success(let data):
+                completion(.success(data))
+            case .failure(let error):
+                print(error)
+                completion(.failure(error))
+            }
+        }
+    }
 }

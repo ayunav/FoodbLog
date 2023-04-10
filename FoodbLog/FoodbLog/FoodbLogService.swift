@@ -10,6 +10,7 @@ import Foundation
 
 enum FoodbLogService {
     case searchRestaurant(query:String, latitute: String, longitude: String)
+    case searchRecipes(query :String)
 }
 
 extension FoodbLogService : APIService {
@@ -17,11 +18,15 @@ extension FoodbLogService : APIService {
         switch self {
         case .searchRestaurant:
             return .foursquare
+        case .searchRecipes:
+            return .fork2forkCA
         }
     }
     
     var endpoint : String {
         switch self {
+        case .searchRecipes(query: let query):
+            return createEndpoint("?query=\(query)")
         case .searchRestaurant(let query, let latitute, let longitude):
             return createEndpoint("search?v=\(query)&ll=\(latitute)%2C\(longitude)&radius=5000&categories=13000")
         }
@@ -31,6 +36,8 @@ extension FoodbLogService : APIService {
         switch self {
         case .searchRestaurant:
             return "\(baseURL.url)places/\(endpoint)"
+        case .searchRecipes:
+            return "\(baseURL.url)search/\(endpoint)"
         }
     }
 }
