@@ -17,7 +17,6 @@
 		50967FC71BD5C8F40029D6AB /* SignPainter-HouseScript.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50967FC61BD5C8F40029D6AB /* SignPainter-HouseScript.ttf */; };
 		50967FD11BD5E36F0029D6AB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50967FD01BD5E36F0029D6AB /* Launch Screen.storyboard */; };
 		50967FD41BD6F6930029D6AB /* RecipeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50967FD31BD6F6930029D6AB /* RecipeTableViewController.m */; };
-		50A3C2C41BCAE4AD0077F79B /* InstagramImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A3C2C31BCAE4AD0077F79B /* InstagramImagePicker.m */; };
 		50D767B81BCC895900C82B8B /* FoodFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D767B71BCC895900C82B8B /* FoodFeedViewController.m */; };
 		50F7C6781BCAF72B00A969D1 /* InstagramImagePickerCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F7C6771BCAF72B00A969D1 /* InstagramImagePickerCustomCell.m */; };
 		50F7C67E1BCB08BA00A969D1 /* FoodFeedCustomCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F7C67D1BCB08BA00A969D1 /* FoodFeedCustomCVC.m */; };
@@ -26,6 +25,7 @@
 		7F003D3529E358EA00439CF8 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F003D3429E358EA00439CF8 /* APIService.swift */; };
 		7F003D3A29E35E0E00439CF8 /* SearchRestaurant.json in Resources */ = {isa = PBXBuildFile; fileRef = 7F003D3929E35E0E00439CF8 /* SearchRestaurant.json */; };
 		7F003D3C29E35FA300439CF8 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F003D3B29E35FA300439CF8 /* Restaurant.swift */; };
+		7F1163DA29E9FBBE002F3DB8 /* UnsplashImagePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1163D929E9FBBE002F3DB8 /* UnsplashImagePickerVC.swift */; };
 		7F1217C229E4757D007913F1 /* SearchRecipe.json in Resources */ = {isa = PBXBuildFile; fileRef = 7F1217C129E4757D007913F1 /* SearchRecipe.json */; };
 		7F1217C429E477E0007913F1 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1217C329E477E0007913F1 /* Recipe.swift */; };
 		7F5B461129E9CAAB00EC67FC /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B461029E9CAAB00EC67FC /* Secrets.swift */; };
@@ -87,8 +87,6 @@
 		50967FD01BD5E36F0029D6AB /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		50967FD21BD6F6930029D6AB /* RecipeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeTableViewController.h; sourceTree = "<group>"; };
 		50967FD31BD6F6930029D6AB /* RecipeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeTableViewController.m; sourceTree = "<group>"; };
-		50A3C2C21BCAE4AD0077F79B /* InstagramImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramImagePicker.h; sourceTree = "<group>"; };
-		50A3C2C31BCAE4AD0077F79B /* InstagramImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramImagePicker.m; sourceTree = "<group>"; };
 		50D767B61BCC895900C82B8B /* FoodFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodFeedViewController.h; sourceTree = "<group>"; };
 		50D767B71BCC895900C82B8B /* FoodFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodFeedViewController.m; sourceTree = "<group>"; };
 		50F7C6761BCAF72B00A969D1 /* InstagramImagePickerCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramImagePickerCustomCell.h; sourceTree = "<group>"; };
@@ -102,6 +100,7 @@
 		7F003D3429E358EA00439CF8 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		7F003D3929E35E0E00439CF8 /* SearchRestaurant.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SearchRestaurant.json; sourceTree = "<group>"; };
 		7F003D3B29E35FA300439CF8 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		7F1163D929E9FBBE002F3DB8 /* UnsplashImagePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashImagePickerVC.swift; sourceTree = "<group>"; };
 		7F1217C129E4757D007913F1 /* SearchRecipe.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SearchRecipe.json; sourceTree = "<group>"; };
 		7F1217C329E477E0007913F1 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		7F5B461029E9CAAB00EC67FC /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
@@ -253,8 +252,7 @@
 		294C32C51C95DD6700795520 /* Pick Image From Instagram */ = {
 			isa = PBXGroup;
 			children = (
-				50A3C2C21BCAE4AD0077F79B /* InstagramImagePicker.h */,
-				50A3C2C31BCAE4AD0077F79B /* InstagramImagePicker.m */,
+				7F1163D929E9FBBE002F3DB8 /* UnsplashImagePickerVC.swift */,
 			);
 			name = "Pick Image From Instagram";
 			sourceTree = "<group>";
@@ -304,9 +302,9 @@
 				7F003D3629E35DC200439CF8 /* Stubs */,
 				7F8CC93F29DDF15D0050C281 /* Service */,
 				7FB90DE829DD5E6600A50433 /* AppDelegate.swift */,
+				7FB90DF029DD668400A50433 /* RootTabBarVC.swift */,
 				7FB90DE729DD5E6500A50433 /* FoodbLog-Bridging-Header.h */,
 				29E25D511BCAB8480015A16F /* Main.storyboard */,
-				7FB90DF029DD668400A50433 /* RootTabBarVC.swift */,
 				294C32BC1C93182200795520 /* Model */,
 				294C32BD1C93183F00795520 /* Views */,
 				294C32BB1C93181400795520 /* Controllers */,
@@ -596,7 +594,6 @@
 				7FB90DF329DD756000A50433 /* FoodLogCollectionViewVC.swift in Sources */,
 				7F8CC93E29DDB3200050C281 /* CreateLogVC.swift in Sources */,
 				7F8CC96C29DDF2D10050C281 /* URLSessionContract.swift in Sources */,
-				50A3C2C41BCAE4AD0077F79B /* InstagramImagePicker.m in Sources */,
 				7F8CC93C29DDAC540050C281 /* FoodLogDetailVC.swift in Sources */,
 				7FB90DED29DD635600A50433 /* ChemeleonAppDelegate.swift in Sources */,
 				7F003D3C29E35FA300439CF8 /* Restaurant.swift in Sources */,
@@ -614,6 +611,7 @@
 				7F5B461729E9D96A00EC67FC /* RestaurantPickerTableVC.swift in Sources */,
 				50F7C67E1BCB08BA00A969D1 /* FoodFeedCustomCVC.m in Sources */,
 				7F5B461529E9CD4C00EC67FC /* Tag.swift in Sources */,
+				7F1163DA29E9FBBE002F3DB8 /* UnsplashImagePickerVC.swift in Sources */,
 				7F1217C429E477E0007913F1 /* Recipe.swift in Sources */,
 				7F003D3529E358EA00439CF8 /* APIService.swift in Sources */,
 				7FB90DE929DD5E6600A50433 /* AppDelegate.swift in Sources */,

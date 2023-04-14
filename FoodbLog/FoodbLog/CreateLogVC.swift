@@ -180,12 +180,10 @@ extension CreateLogVC : RecipeTableViewDelegate {
     }
 }
 
-extension CreateLogVC : InstagramImagePickerDelegate {
-    func imagePickerDidSelectImage(withURL url: String!) {
+extension CreateLogVC : UnsplashImagePickerVCDelegate {
+    func didSelectImageWithURL(_ url: String) {
         guard let url = URL(string: url) else {return}
-        self.foodLogImageView.setImageWith(url, placeholderImage: UIImage()) { image, error, _ in
-            self.foodLogImageView.image = image
-        }
+        foodLogImageView.sd_setImage(with: url)
     }
 }
 
@@ -267,11 +265,11 @@ extension CreateLogVC {
     
     func displayTagResults(_ tags : [Tag]) {
         DispatchQueue.main.async {
-            let instagramPickerVC = self.storyboard?.instantiateViewController(withIdentifier: "InstagramImagePicker") as! InstagramImagePicker
+            let instagramPickerVC = self.storyboard?.instantiateViewController(withIdentifier: "InstagramImagePicker") as! UnsplashImagePickerVC
             
             
 #warning("replace with tags object once this refactoringt complete")
-            instagramPickerVC.imageURLArray = []
+            instagramPickerVC.data = tags
             instagramPickerVC.delegate = self
             
             self.navigationController?.pushViewController(instagramPickerVC, animated: true)

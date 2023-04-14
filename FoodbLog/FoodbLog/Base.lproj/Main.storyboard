@@ -537,7 +537,7 @@
         <!--Instagram Image Picker-->
         <scene sceneID="SHr-0n-67f">
             <objects>
-                <collectionViewController storyboardIdentifier="InstagramImagePicker" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qVk-gc-INx" userLabel="Instagram Image Picker" customClass="InstagramImagePicker" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="InstagramImagePicker" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qVk-gc-INx" userLabel="Instagram Image Picker" customClass="UnsplashImagePickerVC" customModule="FoodbLog" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="pda-ev-Man">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

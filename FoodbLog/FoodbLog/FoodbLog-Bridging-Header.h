@@ -6,7 +6,7 @@
 #import "FoodFeedViewController.h"
 #import "FoodbLogCustomCell.h"
 #import "RecipeTableViewController.h"
-#import "InstagramImagePicker.h"
+#import "InstagramImagePickerCustomCell.h"
 #import "FoodLog.h"
 #import "FoodFeedObject.h"
 #import "FoodLog.m"
