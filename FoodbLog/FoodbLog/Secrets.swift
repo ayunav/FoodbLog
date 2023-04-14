@@ -9,3 +9,4 @@
 import Foundation
 
 let API_KEY_UNSPLASH = "FAKE_API_KEY"
+let API_KEY_FOURSQUARE = "FAKE_API_KEY"

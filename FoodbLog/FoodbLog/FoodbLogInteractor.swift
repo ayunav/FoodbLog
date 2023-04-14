@@ -26,7 +26,7 @@ final class FoodbLogInteractorImpl {
         
         let headers = [
             "accept": "application/json",
-            "Authorization": "fsq330X+8o6/JsdNbbyzjYaEqXORJTZvanpmRWgb4MVsW8E="
+            "Authorization": "\(API_KEY_FOURSQUARE)"
         ]
         
         var request = URLRequest(url: url)
