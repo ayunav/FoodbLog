@@ -63,4 +63,21 @@ final class FoodbLogInteractorImpl {
             }
         }
     }
+    
+    func requestInstagramHastags(_ name : String, _ completion : @escaping (Result<TagResponse, Error>)->Void) {
+        guard let url = URL(string: FoodbLogService.searchFoodsTag(query: name).endpoint) else {
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        
+        client.performRequest(request, TagResponse.self) { result in
+            switch result {
+            case .success(let data):
+                completion(.success(data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

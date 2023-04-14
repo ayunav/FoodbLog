@@ -17,6 +17,7 @@ protocol APIService {
 enum APIProvider {
     case foursquare
     case fork2forkCA
+    case unsplash
 }
 
 extension APIProvider {
@@ -26,6 +27,8 @@ extension APIProvider {
             return "https://api.foursquare.com/v3/"
         case .fork2forkCA :
             return "https://food2fork.ca/api/recipe/"
+        case .unsplash:
+            return "https://api.unsplash.com/"
         }
     }
 }

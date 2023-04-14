@@ -48,7 +48,7 @@ final class CreateLogVC: UIViewController {
 
 extension CreateLogVC {
     @IBAction func searcAPicOnIntagramButtonTapped(_ sender : UIButton) {
-        instagramRequestForTag(foodLogTitleTextField.text ?? "-")
+        requestImageForTag(foodLogTitleTextField.text ?? "-")
     }
     
     @IBAction func snapAPhotoButtonTapped(_ sender : UIButton) {
@@ -221,13 +221,13 @@ extension CreateLogVC {
     func displaySearchResults(_ results : [Restaurant]) {
         DispatchQueue.main.async {
             let restaurantPickerTVC = self.storyboard?.instantiateViewController(withIdentifier: "RestaurantPickerTableViewController") as! RestaurantPickerTableViewController
-    #warning("replace with restaurant object once this refactoringt complete")
+#warning("replace with restaurant object once this refactoringt complete")
             restaurantPickerTVC.restaurantData = [[:]]
             restaurantPickerTVC.delegate = self
             
             self.navigationController?.pushViewController(restaurantPickerTVC, animated: true)
         }
-
+        
     }
     
     // MARK:  Recipes API Request method
@@ -247,7 +247,7 @@ extension CreateLogVC {
     func displayRecipeResults(_ recipes : [Recipe]) {
         DispatchQueue.main.async {
             let recipeTVC = self.storyboard?.instantiateViewController(withIdentifier: "RecipeTableViewController") as! RecipeTableViewController
-    #warning("replace with recipe object once this refactoringt complete")
+#warning("replace with recipe object once this refactoringt complete")
             recipeTVC.recipeResultsArray = []
             recipeTVC.delegate = self
             
@@ -255,48 +255,30 @@ extension CreateLogVC {
         }
     }
     
-    // MARK:  Instagram Image API Request method
-    func instagramRequestForTag(_ foodName : String) {
+    // MARK:  Unsplash Image API Request method
+    func requestImageForTag(_ foodName : String) {
         let foodName = foodName.replacingOccurrences(of: " ", with: "")
-        
-        let urlString = "https://api.instagram.com/v1/tags/\(foodName)/media/recent?client_id=ac0ee52ebb154199bfabfb15b498c067"
-        
-        guard let url = URL(string: urlString) else {return}
-        
-        let urlRequest = URLRequest(url: url)
-        
-        let task = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
-            if let error = error {
-                print("Error to request tag for \(foodName) : \(error.localizedDescription)")
-            }
-            
-            guard let data = data else {return}
-            
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            do {
-                let recipes = try decoder.decode(TagResponse.self, from: data)
-                self.displayTagResults(recipes.data)
-                
-            } catch {
-                print("Error decode data : \(error.localizedDescription)")
+        foodbLogInteractor.requestInstagramHastags(foodName) { result in
+            switch result {
+            case .success(let success):
+                self.displayTagResults(success.results)
+            case .failure(let failure):
+                print("Error request IG Hashtags : \(failure.localizedDescription)")
             }
         }
-        
-        task.resume()
-        
     }
     
     func displayTagResults(_ tags : [Tag]) {
-        let instagramPickerVC = storyboard?.instantiateViewController(withIdentifier: "InstagramImagePickerViewController") as! InstagramImagePicker
-        
-        
+        DispatchQueue.main.async {
+            let instagramPickerVC = self.storyboard?.instantiateViewController(withIdentifier: "InstagramImagePicker") as! InstagramImagePicker
+            
+            
 #warning("replace with tags object once this refactoringt complete")
-        instagramPickerVC.imageURLArray = []
-        instagramPickerVC.delegate = self
-        
-        navigationController?.pushViewController(instagramPickerVC, animated: true)
+            instagramPickerVC.imageURLArray = []
+            instagramPickerVC.delegate = self
+            
+            self.navigationController?.pushViewController(instagramPickerVC, animated: true)
+        }
     }
 }
 
@@ -309,7 +291,6 @@ private extension CreateLogVC {
         
         foodLogImageView.layer.masksToBounds = true
         foodLogImageView.layer.cornerRadius = 10
-        
     }
     
     func setupTextEditor() {
@@ -357,16 +338,5 @@ private extension CreateLogVC {
     
     @objc func saveButtonTapped(_ button : UIBarButtonItem) {
         saveDataToParse()
-        
     }
-}
-
-struct TagResponse : Decodable {
-    let data : [Tag]
-}
-
-struct Tag : Decodable {
-    let images : [String]
-    let standardResolution : String
-    let URL : String
 }

@@ -31,6 +31,8 @@
 		7F1217C229E4757D007913F1 /* SearchRecipe.json in Resources */ = {isa = PBXBuildFile; fileRef = 7F1217C129E4757D007913F1 /* SearchRecipe.json */; };
 		7F1217C429E477E0007913F1 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1217C329E477E0007913F1 /* Recipe.swift */; };
 		7F5B461129E9CAAB00EC67FC /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B461029E9CAAB00EC67FC /* Secrets.swift */; };
+		7F5B461329E9CB1800EC67FC /* SearchFoods.json in Resources */ = {isa = PBXBuildFile; fileRef = 7F5B461229E9CB1800EC67FC /* SearchFoods.json */; };
+		7F5B461529E9CD4C00EC67FC /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B461429E9CD4C00EC67FC /* Tag.swift */; };
 		7F6967B229E2B5E600A8A71B /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6967B129E2B5E600A8A71B /* HttpClient.swift */; };
 		7F8CC93C29DDAC540050C281 /* FoodLogDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC93B29DDAC540050C281 /* FoodLogDetailVC.swift */; };
 		7F8CC93E29DDB3200050C281 /* CreateLogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC93D29DDB3200050C281 /* CreateLogVC.swift */; };
@@ -108,6 +110,8 @@
 		7F1217C129E4757D007913F1 /* SearchRecipe.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SearchRecipe.json; sourceTree = "<group>"; };
 		7F1217C329E477E0007913F1 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		7F5B461029E9CAAB00EC67FC /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		7F5B461229E9CB1800EC67FC /* SearchFoods.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SearchFoods.json; sourceTree = "<group>"; };
+		7F5B461429E9CD4C00EC67FC /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		7F6967B129E2B5E600A8A71B /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		7F8CC93B29DDAC540050C281 /* FoodLogDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLogDetailVC.swift; sourceTree = "<group>"; };
 		7F8CC93D29DDB3200050C281 /* CreateLogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLogVC.swift; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 				5D2957231BD3F8FE0029FD65 /* FoodFeedObject.m */,
 				7F003D3B29E35FA300439CF8 /* Restaurant.swift */,
 				7F1217C329E477E0007913F1 /* Recipe.swift */,
+				7F5B461429E9CD4C00EC67FC /* Tag.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 			children = (
 				7F003D3929E35E0E00439CF8 /* SearchRestaurant.json */,
 				7F1217C129E4757D007913F1 /* SearchRecipe.json */,
+				7F5B461229E9CB1800EC67FC /* SearchFoods.json */,
 			);
 			name = Stubs;
 			sourceTree = "<group>";
@@ -502,6 +508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50967FC71BD5C8F40029D6AB /* SignPainter-HouseScript.ttf in Resources */,
+				7F5B461329E9CB1800EC67FC /* SearchFoods.json in Resources */,
 				7F1217C229E4757D007913F1 /* SearchRecipe.json in Resources */,
 				7F003D3A29E35E0E00439CF8 /* SearchRestaurant.json in Resources */,
 				29E25D551BCAB8480015A16F /* Assets.xcassets in Resources */,
@@ -614,6 +621,7 @@
 				7FDC776129E335FC002E6677 /* FoodbLogInteractor.swift in Sources */,
 				50F7C67E1BCB08BA00A969D1 /* FoodFeedCustomCVC.m in Sources */,
 				29E25D801BCAC9D50015A16F /* CreateLogViewController.m in Sources */,
+				7F5B461529E9CD4C00EC67FC /* Tag.swift in Sources */,
 				7F1217C429E477E0007913F1 /* Recipe.swift in Sources */,
 				7F003D3529E358EA00439CF8 /* APIService.swift in Sources */,
 				7FB90DE929DD5E6600A50433 /* AppDelegate.swift in Sources */,
