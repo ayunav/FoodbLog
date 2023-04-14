@@ -166,8 +166,8 @@ extension CreateLogVC : UIImagePickerControllerDelegate, UINavigationControllerD
     }
 }
 
-extension CreateLogVC : RestaurantPickerTableViewDelegate {
-    func didSelectRestaurant(_ restaurant: String!) {
+extension CreateLogVC : RestaurantPickerTableVCDelegate {
+    func didSelectRestaurant(_ restaurant: String) {
         restaurantSearchTextField.text = restaurant
     }
 }
@@ -178,7 +178,6 @@ extension CreateLogVC : RecipeTableViewDelegate {
         recipeIngredientsToSave = ingredients
         navigationController?.popViewController(animated: true)
     }
-    
 }
 
 extension CreateLogVC : InstagramImagePickerDelegate {
@@ -220,14 +219,12 @@ extension CreateLogVC {
     
     func displaySearchResults(_ results : [Restaurant]) {
         DispatchQueue.main.async {
-            let restaurantPickerTVC = self.storyboard?.instantiateViewController(withIdentifier: "RestaurantPickerTableViewController") as! RestaurantPickerTableViewController
-#warning("replace with restaurant object once this refactoringt complete")
-            restaurantPickerTVC.restaurantData = [[:]]
+            let restaurantPickerTVC = self.storyboard?.instantiateViewController(withIdentifier: "RestaurantPickerTableViewController") as! RestaurantPickerTableVC
+            restaurantPickerTVC.data = results
             restaurantPickerTVC.delegate = self
             
             self.navigationController?.pushViewController(restaurantPickerTVC, animated: true)
         }
-        
     }
     
     // MARK:  Recipes API Request method

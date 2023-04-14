@@ -651,10 +651,10 @@
             </objects>
             <point key="canvasLocation" x="4809.9236641221369" y="-843.66197183098598"/>
         </scene>
-        <!--Restaurant Picker Table View Controller-->
+        <!--Restaurant Picker TableVC-->
         <scene sceneID="fkR-2M-0yN">
             <objects>
-                <tableViewController storyboardIdentifier="RestaurantPickerTableViewController" id="V1r-Rg-8Tt" customClass="RestaurantPickerTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RestaurantPickerTableViewController" id="V1r-Rg-8Tt" customClass="RestaurantPickerTableVC" customModule="FoodbLog" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yz4-fk-c4N">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

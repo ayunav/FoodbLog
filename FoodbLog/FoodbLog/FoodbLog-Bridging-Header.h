@@ -5,8 +5,6 @@
 #import "FoodLog.h"
 #import "FoodFeedViewController.h"
 #import "FoodbLogCustomCell.h"
-#import "CreateLogViewController.h"
-#import "RestaurantPickerTableViewController.h"
 #import "RecipeTableViewController.h"
 #import "InstagramImagePicker.h"
 #import "FoodLog.h"
