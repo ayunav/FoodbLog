@@ -16,7 +16,6 @@
 		507F55891BD965B10059C2B3 /* RecipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 507F55881BD965B10059C2B3 /* RecipeTableViewCell.m */; };
 		50967FC71BD5C8F40029D6AB /* SignPainter-HouseScript.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50967FC61BD5C8F40029D6AB /* SignPainter-HouseScript.ttf */; };
 		50967FD11BD5E36F0029D6AB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50967FD01BD5E36F0029D6AB /* Launch Screen.storyboard */; };
-		50967FD41BD6F6930029D6AB /* RecipeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50967FD31BD6F6930029D6AB /* RecipeTableViewController.m */; };
 		50D767B81BCC895900C82B8B /* FoodFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D767B71BCC895900C82B8B /* FoodFeedViewController.m */; };
 		50F7C6781BCAF72B00A969D1 /* InstagramImagePickerCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F7C6771BCAF72B00A969D1 /* InstagramImagePickerCustomCell.m */; };
 		50F7C67E1BCB08BA00A969D1 /* FoodFeedCustomCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F7C67D1BCB08BA00A969D1 /* FoodFeedCustomCVC.m */; };
@@ -39,6 +38,7 @@
 		7F8CC96C29DDF2D10050C281 /* URLSessionContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC96B29DDF2D10050C281 /* URLSessionContract.swift */; };
 		7F8CC96E29DDF3630050C281 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC96D29DDF3630050C281 /* MockURLSession.swift */; };
 		7F8CC97029DDF91E0050C281 /* FoodLogServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8CC96F29DDF91E0050C281 /* FoodLogServiceTests.swift */; };
+		7FB139F929EAE0AB0061BD9C /* RecipeTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB139F829EAE0AB0061BD9C /* RecipeTableVC.swift */; };
 		7FB90DE929DD5E6600A50433 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DE829DD5E6600A50433 /* AppDelegate.swift */; };
 		7FB90DEB29DD630F00A50433 /* ParseDBAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DEA29DD630F00A50433 /* ParseDBAppDelegate.swift */; };
 		7FB90DED29DD635600A50433 /* ChemeleonAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB90DEC29DD635600A50433 /* ChemeleonAppDelegate.swift */; };
@@ -85,8 +85,6 @@
 		507F55881BD965B10059C2B3 /* RecipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeTableViewCell.m; sourceTree = "<group>"; };
 		50967FC61BD5C8F40029D6AB /* SignPainter-HouseScript.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SignPainter-HouseScript.ttf"; sourceTree = "<group>"; };
 		50967FD01BD5E36F0029D6AB /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		50967FD21BD6F6930029D6AB /* RecipeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeTableViewController.h; sourceTree = "<group>"; };
-		50967FD31BD6F6930029D6AB /* RecipeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeTableViewController.m; sourceTree = "<group>"; };
 		50D767B61BCC895900C82B8B /* FoodFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodFeedViewController.h; sourceTree = "<group>"; };
 		50D767B71BCC895900C82B8B /* FoodFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodFeedViewController.m; sourceTree = "<group>"; };
 		50F7C6761BCAF72B00A969D1 /* InstagramImagePickerCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramImagePickerCustomCell.h; sourceTree = "<group>"; };
@@ -115,6 +113,7 @@
 		7F8CC96B29DDF2D10050C281 /* URLSessionContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionContract.swift; sourceTree = "<group>"; };
 		7F8CC96D29DDF3630050C281 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		7F8CC96F29DDF91E0050C281 /* FoodLogServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLogServiceTests.swift; sourceTree = "<group>"; };
+		7FB139F829EAE0AB0061BD9C /* RecipeTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableVC.swift; sourceTree = "<group>"; };
 		7FB90DE729DD5E6500A50433 /* FoodbLog-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FoodbLog-Bridging-Header.h"; sourceTree = "<group>"; };
 		7FB90DE829DD5E6600A50433 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FB90DEA29DD630F00A50433 /* ParseDBAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseDBAppDelegate.swift; sourceTree = "<group>"; };
@@ -268,8 +267,7 @@
 		294C32C71C95DD8100795520 /* Pick Recipe */ = {
 			isa = PBXGroup;
 			children = (
-				50967FD21BD6F6930029D6AB /* RecipeTableViewController.h */,
-				50967FD31BD6F6930029D6AB /* RecipeTableViewController.m */,
+				7FB139F829EAE0AB0061BD9C /* RecipeTableVC.swift */,
 			);
 			name = "Pick Recipe";
 			sourceTree = "<group>";
@@ -595,10 +593,10 @@
 				7F8CC93E29DDB3200050C281 /* CreateLogVC.swift in Sources */,
 				7F8CC96C29DDF2D10050C281 /* URLSessionContract.swift in Sources */,
 				7F8CC93C29DDAC540050C281 /* FoodLogDetailVC.swift in Sources */,
+				7FB139F929EAE0AB0061BD9C /* RecipeTableVC.swift in Sources */,
 				7FB90DED29DD635600A50433 /* ChemeleonAppDelegate.swift in Sources */,
 				7F003D3C29E35FA300439CF8 /* Restaurant.swift in Sources */,
 				5D2957241BD3F8FE0029FD65 /* FoodFeedObject.m in Sources */,
-				50967FD41BD6F6930029D6AB /* RecipeTableViewController.m in Sources */,
 				29F703A31BD08C5C009B7A82 /* FoodLog.m in Sources */,
 				29F703611BCB923F009B7A82 /* FoodbLogCustomCell.m in Sources */,
 				507F55891BD965B10059C2B3 /* RecipeTableViewCell.m in Sources */,

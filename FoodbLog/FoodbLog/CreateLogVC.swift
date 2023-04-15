@@ -139,7 +139,6 @@ extension CreateLogVC : UITextFieldDelegate {
         
         return true
     }
-    
 }
 
 extension CreateLogVC : UITextViewDelegate {
@@ -172,11 +171,10 @@ extension CreateLogVC : RestaurantPickerTableVCDelegate {
     }
 }
 
-extension CreateLogVC : RecipeTableViewDelegate {
-    func didSelectRecipe(_ recipe: String!, withIngredients ingredients: String!) {
+extension CreateLogVC : RecipeTableVCDelegate {
+    func didSelecteRecipe(_ recipe: String, withIngredients ingredients: String) {
         recipeSearchTextField.text = recipe
         recipeIngredientsToSave = ingredients
-        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -232,6 +230,7 @@ extension CreateLogVC {
         foodbLogInteractor.requestRecipes(formattedInputString) { result in
             switch result {
             case .success(let data):
+                print(data.results)
                 self.displayRecipeResults(data.results)
             case .failure(let failure):
                 print("Failure to fetch recipes : \(failure.localizedDescription)")
@@ -241,9 +240,8 @@ extension CreateLogVC {
     
     func displayRecipeResults(_ recipes : [Recipe]) {
         DispatchQueue.main.async {
-            let recipeTVC = self.storyboard?.instantiateViewController(withIdentifier: "RecipeTableViewController") as! RecipeTableViewController
-#warning("replace with recipe object once this refactoringt complete")
-            recipeTVC.recipeResultsArray = []
+            let recipeTVC = self.storyboard?.instantiateViewController(withIdentifier: "RecipeTableViewController") as! RecipeTableVC
+            recipeTVC.data = recipes
             recipeTVC.delegate = self
             
             self.navigationController?.pushViewController(recipeTVC, animated: true)
@@ -266,9 +264,6 @@ extension CreateLogVC {
     func displayTagResults(_ tags : [Tag]) {
         DispatchQueue.main.async {
             let instagramPickerVC = self.storyboard?.instantiateViewController(withIdentifier: "InstagramImagePicker") as! UnsplashImagePickerVC
-            
-            
-#warning("replace with tags object once this refactoringt complete")
             instagramPickerVC.data = tags
             instagramPickerVC.delegate = self
             

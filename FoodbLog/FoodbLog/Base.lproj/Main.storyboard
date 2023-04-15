@@ -590,7 +590,7 @@
         <!--Recipe Picker Table View Controller-->
         <scene sceneID="CdB-r5-ymd">
             <objects>
-                <tableViewController storyboardIdentifier="RecipeTableViewController" id="o24-jZ-SBu" userLabel="Recipe Picker Table View Controller" customClass="RecipeTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RecipeTableViewController" id="o24-jZ-SBu" userLabel="Recipe Picker Table View Controller" customClass="RecipeTableVC" customModule="FoodbLog" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="133" sectionHeaderHeight="28" sectionFooterHeight="28" id="tKa-PS-TNJ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
