@@ -25,12 +25,12 @@ PODS:
     - ChameleonFramework/Default (= 2.0.4)
   - ChameleonFramework/Default (2.0.4)
   - FlatUIKit (1.6.2)
-  - IQKeyboardManager (3.3.2)
+  - IQKeyboardManager (4.0.11)
   - Parse (1.9.0):
     - Bolts/Tasks (>= 1.3.0)
-  - ParseUI (1.1.6):
-    - Bolts/Tasks (~> 1.2)
-    - Parse (~> 1.8)
+  - ParseUI (1.2.0):
+    - Bolts/Tasks (~> 1.3)
+    - Parse (~> 1.9)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -40,21 +40,35 @@ DEPENDENCIES:
   - AFNetworking (~> 2.6)
   - ChameleonFramework
   - FlatUIKit
-  - IQKeyboardManager (~> 3.3)
+  - IQKeyboardManager (= 4.0.11)
   - Parse (~> 1.9)
-  - ParseUI (~> 1.1)
+  - ParseUI (~> 1.2)
   - SDWebImage (~> 3.7)
   - Unirest (~> 1.1.4)
 
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - Bolts
+    - ChameleonFramework
+    - FlatUIKit
+    - IQKeyboardManager
+    - Parse
+    - ParseUI
+    - SDWebImage
+    - Unirest
+
 SPEC CHECKSUMS:
-  AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
+  AFNetworking: cd116683fd5dd1a34715a3c9410b6d7b8745d8b9
   Bolts: 805a4a87413e49d4a0c2b7d469084cbc46b09342
   ChameleonFramework: 5abe69b1f2a6cc79c3c435fcd9d3d855748225ee
   FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
-  IQKeyboardManager: d863eb0bca424d1f6dad6bdd1f856af52664add8
+  IQKeyboardManager: 83eae5318483a34eb2069ef413d195b97605232e
   Parse: 712efbc476d4f47b0f96b70db7e53101575753aa
-  ParseUI: 8a22e448c03f825203d8c379c80523517f68baa3
+  ParseUI: 2b37a0bc692a3e7666cf0c37b5521dfddd74a1af
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   Unirest: 5e4d93eaf32463bf619a4ecd3bbc8c32acf21eac
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 09b53eef3412218e3591c5319fce8435cc752a95
+
+COCOAPODS: 1.11.3
